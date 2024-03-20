@@ -2,7 +2,7 @@ STEPS: Commands in terminal to run
 
 BACKEND---------------------
 1. "cd server" (Make sure you are in the server directory)
-2. "npm install express mongoose cors nodemon"  (Install packages)
+2. "npm install express mongoose cors nodemon"  (Install packages) if it says alreadyed installed, you do not need to npm install anything, if not, then npm install at all steps
 
 commands: to run backend-server "npm start"
 How to connect to database: 1. install MongoDB Compass,2.  paste "mongodb+srv://courts:CEN_TEAM_27@cluster0.l3pyct1.mongodb.net/" to New Connection
