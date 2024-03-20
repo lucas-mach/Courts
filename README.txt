@@ -16,3 +16,4 @@ tip- use another terminal to run both servers,
 3. "npm start" (Run react app, "Frontend")
 
 
+Outline tutorial: https://youtu.be/59i81DxFjl8
