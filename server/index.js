@@ -1,7 +1,10 @@
+
+const jwt = require("jsonwebtoken")
+const bcrypt = require("bcrypt")
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const UserModel = require("./models/Users");
+const UserModel = require("./models/Users.js");
 
 const cors = require("cors");
 
@@ -22,13 +25,41 @@ app.get("/getUsers", async (req,res) => {
     }
 });
 
+app.post("/login", async (req,res) => {
+    const { username, password} = req.body;
+    const user = await UserModel.findOne( { username });
+
+    if (!user) {
+        return res.json({ message: "User doesn't exist!"});
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+        return res.json( { message: "Username and password combination are incorrect"});
+    }
+
+    const token = jwt.sign( { id: user._id}, "secret");
+    res.json( { token, userID: user._id});
+    
+});
+
 // Get request from front-end as the body inside req and send information to database
-app.post("/createUser", async (req,res) => {
-    const user = req.body;
-    const newUser = new UserModel(user);
+app.post("/register", async (req,res) => {
+
+    const { username, password} = req.body;
+    const user = await UserModel.findOne( { username });
+
+    if(user) {
+        return res.json({message: "User already exists"});
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = new UserModel({ username, password: hashedPassword});
     await newUser.save();
 
-    res.json(user);
+    res.json({message: "User Registered Successfully"});
+
 });
 
 

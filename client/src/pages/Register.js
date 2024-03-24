@@ -6,16 +6,21 @@ import axios from "axios";
 
 function Register() {
     //State containing our users
-  const [listofUsers, setlistofUsers] = useState([]);
+ 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   //Api call to backend, runs when webpage opens
   
 
-  const createUser = () => {
-    axios.post("http://localhost:3001/createUser", {username: username, password: password}).then((response) => {
-      setlistofUsers([...listofUsers, {username: username, password: password}])
-    });
+  const createUser = async (event) => {
+    event.preventDefault();
+    try {
+        await axios.post("http://localhost:3001/register", {username: username, password: password});
+        alert("registration completed");
+    }
+    catch (err) {
+        console.error(err);
+    }
   };
 
 
@@ -24,9 +29,10 @@ function Register() {
             <h1>Register Page</h1>
             <a href="http://localhost:3000/">Home</a>
             <div>
-                <input 
+                <input
                     type="text"
                     placeholder="username..."
+                    value={username}
                     onChange={(event) => {
                         setUsername(event.target.value);
                         }}
@@ -34,6 +40,7 @@ function Register() {
                 <input 
                     type="text" 
                     placeholder="password..."
+                    value={password}
                     onChange={(event) => {
                         setPassword(event.target.value);
                         }}
@@ -41,6 +48,7 @@ function Register() {
                 <button onClick={createUser}>
                     Create User
                 </button>
+                <div><a href="http://localhost:3000/login">Login</a></div>
             </div>
             
             
