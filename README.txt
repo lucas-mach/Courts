@@ -2,7 +2,7 @@ STEPS: Commands in terminal to run
 
 BACKEND---------------------
 1. "cd server" (Make sure you are in the server directory)
-2. "npm install express mongoose cors nodemon bcrypt jsonwebtoken"  (Install packages) if it says alreadyed installed, you do not need to npm install anything, if not, then npm install at all steps
+2. "npm install express mongoose cors nodemon bcrypt jsonwebtoken"  (Install packages)
 
 commands: to run backend-server "npm start"
 How to connect to database: 1. install MongoDB Compass,2.  paste "mongodb+srv://courts:CEN_TEAM_27@cluster0.l3pyct1.mongodb.net/" to New Connection
@@ -14,7 +14,5 @@ tip- use another terminal to run both servers,
 2. "npm install axios react-cookie" (Install package to make api requests to backend)
 3. "npm i react-router-dom"
 3. "npm start" (Run react app, "Frontend")
-
 Outline tutorial: https://youtu.be/59i81DxFjl8
-
 
