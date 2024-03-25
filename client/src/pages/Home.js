@@ -1,3 +1,4 @@
+import './Home.css';
 import React from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
@@ -14,8 +15,14 @@ function Home() {
 
     return (
         <div>
-            <h1>Home Page :D</h1>
-            {!cookies.access_token ?  <a href="http://localhost:3000/register">Register</a> : <button onClick={logout}>Logout</button>}
+            <h1>Courts</h1>
+            
+
+            <div class="navbar">
+                {!cookies.access_token ?  <a href="http://localhost:3000/register">Register</a> : <button class="logout-button" onClick={logout}>Logout</button>}
+                <a href="http://localhost:3000/aboutus">About Us</a>
+            </div>
+
         </div>
     );
 }

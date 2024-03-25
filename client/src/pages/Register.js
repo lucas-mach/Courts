@@ -26,9 +26,11 @@ function Register() {
 
     return (
         <div>
-            <h1>Register Page</h1>
-            <a href="http://localhost:3000/">Home</a>
-            <div>
+            <h2>Register Page</h2>
+            <a href="http://localhost:3000/" class="home">Home</a>
+            
+            <div class="credentials">
+                <p>New users</p>
                 <input
                     type="text"
                     placeholder="username..."
@@ -48,7 +50,10 @@ function Register() {
                 <button onClick={createUser}>
                     Create User
                 </button>
-                <div><a href="http://localhost:3000/login">Login</a></div>
+                <div>
+                    <p>Already have an account?</p>
+                    <a href="http://localhost:3000/login">Login</a>
+                </div>
             </div>
             
             
