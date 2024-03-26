@@ -34,10 +34,12 @@ function Login() {
 
     return (
         <div>
-            <h1>Login Page</h1>
-            <div><a href="http://localhost:3000/register">Create An Account</a></div>
-            <a href="http://localhost:3000/">Home</a>
-            <div>
+            <h2>Login Page</h2>
+
+            <a href="http://localhost:3000/" class="home">Home</a>   
+
+            <div class="credentials">
+                <p>Please enter your username and password.</p>
                 <input
                     type="text"
                     placeholder="username..."
@@ -57,6 +59,11 @@ function Login() {
                 <button onClick={loginUser}>
                     Login
                 </button>
+
+                <div>
+                    <p>Don't have an account?</p>
+                    <a href="http://localhost:3000/register">Create An Account</a>
+                </div>
             </div>
         </div>
     );

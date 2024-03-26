@@ -1,0 +1,106 @@
+body {
+    background-color: wheat;
+}
+
+h1 {
+    font-size: 100px;
+    padding: 5% 0;
+    text-align: center;
+    color: palevioletred;
+}
+
+h2 {
+    font-size: 40px;
+    text-align: center;
+    color: palevioletred;
+}
+
+.navbar {
+    margin: auto;
+    width: 0%;
+    background-color: palevioletred;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar a {
+    background-color: palevioletred;
+    border-radius: 10px;
+    padding: 10px 50px 10px;
+    
+    color: aliceblue;
+    font-size: 50px;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+
+    border-top: 2px solid wheat;
+    border-left: 2px solid wheat;
+    border-right: 2px solid wheat;
+    border-bottom: 2px solid wheat;
+}
+
+/*
+.navbar a:not(:last-child) {
+    border-bottom: 2px solid wheat;
+}
+*/
+
+.navbar a:hover {
+    color: white;
+    background-color: gray;
+}
+
+.logout-button {
+    background-color: palevioletred;
+    border-radius: 10px;
+    padding: 10px 50px 10px;
+    
+    color: aliceblue;
+    font-size: 50px;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+
+    border-top: 2px solid wheat;
+    border-left: 2px solid wheat;
+    border-right: 2px solid wheat;
+    border-bottom: 2px solid wheat;
+}
+
+.logout-button:hover {
+    color: white;
+    background-color: gray;
+}
+
+.aboutus {
+    display: block;
+    margin: auto;
+    width: 50%;
+    height: 1000px;
+    background-color: white;
+    color: black;
+}
+
+.credentials {
+    background-color: aliceblue;
+    width: 50%;
+    margin: auto;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.home {
+    font-size: 30px;
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    padding: 10px;
+    text-decoration: none;
+    color: palevioletred;
+}
+
+.home:hover {
+    background-color: palevioletred;
+    color: wheat;
+}
