@@ -11,8 +11,7 @@ Helpful tools - If you want to test requests, you can use thunderbird extension 
 FRONTEND-----------------------------
 tip- use another terminal to run both servers,
 1. "cd client" (Make sure you are in client directory)
-2. "npm install axios react-cookie" (Install package to make api requests to backend)
-3. "npm i react-router-dom"
+2. "npm install axios react-cookie react-router-dom" (Install package to make api requests to backend)
 3. "npm start" (Run react app, "Frontend")
 Outline tutorial: https://youtu.be/59i81DxFjl8
 
