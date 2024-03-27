@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Register from "./pages/Register"
 import Login from "./pages/Login"
 import Aboutus from "./pages/aboutus"
+import EditPreferences from './pages/EditPreferences';
 
 
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/aboutus" element={<Aboutus/>}/>
+          <Route path="/editPreferences" element={<EditPreferences/>}/>
         </Routes>
       </Router>
     </div>

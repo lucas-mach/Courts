@@ -10,6 +10,20 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    football: {
+        type: Boolean,
+        required: true,
+    },
+    basketball: {
+        type: Boolean,
+        required: true,
+    },
+    tennis: {
+        type: Boolean,
+        required: true,
+    }
+
+
 });
 
 const UserModel = mongoose.model("users", UserSchema);

@@ -40,7 +40,7 @@ app.post("/login", async (req,res) => {
     }
 
     const token = jwt.sign( { id: user._id}, "secret");
-    res.json( { token, userID: user._id});
+    res.json({username: username});
     
 });
 
@@ -55,12 +55,29 @@ app.post("/register", async (req,res) => {
     }
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = new UserModel({ username, password: hashedPassword});
+    const newUser = new UserModel({ username, password: hashedPassword, football: false, basketball: false, tennis: false});
     await newUser.save();
 
     res.json({message: "User Registered Successfully"});
 
 });
+
+app.post("/editPreferences", async (req,res) => {
+    
+    const {username, football, basketball, tennis} = req.body;
+    let user = await UserModel.findOne({username: username});
+    if (user) {
+        user.football = football;
+        user.basketball = basketball;
+        user.tennis = tennis;
+        await user.save();
+    }
+    
+    res.json({message : "Edited"})
+
+
+
+})
 
 
 
