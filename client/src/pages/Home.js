@@ -13,7 +13,7 @@ function Home() {
         naviagate("/login");
     }
     const goToPreferences = () => {
-        naviagate("/editPreferences")
+        naviagate("/editPreferences");
     }
  
 
@@ -28,7 +28,7 @@ function Home() {
                     <button class="logout-button" onClick={logout}>Logout</button> 
                     <button onClick={goToPreferences}>Edit Preferences</button>
                     <div>
-                       {localStorage.getItem("userID")}
+                       User Logged in: {localStorage.getItem("userID")}
 
                     </div>
                 </div>}

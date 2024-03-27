@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 
 function EditPreferences() {
@@ -10,6 +10,7 @@ function EditPreferences() {
     const [basketball, setbasketball] = useState(false);
     const [tennis, settennis] = useState(false);
     const username = localStorage.getItem("userID");
+    const naviagate = useNavigate();
 
 
     const editPref = async (event) => {
@@ -17,7 +18,8 @@ function EditPreferences() {
         try {
             
             const response = await axios.post("http://localhost:3001/editPreferences", {username:username, football: football, basketball: basketball, tennis: tennis});
-            
+            naviagate("/");
+
         }
         catch(err) {
             console.error(err);
