@@ -40,12 +40,6 @@ h2 {
     border-bottom: 2px solid wheat;
 }
 
-/*
-.navbar a:not(:last-child) {
-    border-bottom: 2px solid wheat;
-}
-*/
-
 .navbar a:hover {
     color: white;
     background-color: gray;
@@ -53,8 +47,7 @@ h2 {
 
 .logout-button {
     background-color: palevioletred;
-    border-radius: 10px;
-    padding: 10px 50px 10px;
+    padding: 15px 50px 15px;
     
     color: aliceblue;
     font-size: 50px;
@@ -62,6 +55,7 @@ h2 {
     text-align: center;
     white-space: nowrap;
 
+    border-radius: 10px;
     border-top: 2px solid wheat;
     border-left: 2px solid wheat;
     border-right: 2px solid wheat;
@@ -71,6 +65,28 @@ h2 {
 .logout-button:hover {
     color: white;
     background-color: gray;
+}
+
+.edit-profile {
+    background-color: palevioletred;
+    color: aliceblue;
+    font-size: 30px;
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    padding: 10px;
+    text-decoration: none;
+
+    border-radius: 10px;
+    border-top: 2px solid wheat;
+    border-left: 2px solid wheat;
+    border-right: 2px solid wheat;
+    border-bottom: 2px solid wheat;
+}
+
+.edit-profile:hover {
+    background-color: palevioletred;
+    color: wheat;
 }
 
 .aboutus {

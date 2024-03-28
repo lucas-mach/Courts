@@ -22,15 +22,11 @@ function Home() {
         <div>
             <h1>Courts</h1>
             
-
+            <button class="edit-profile" onClick={goToPreferences}>{localStorage.getItem("userID")}: Profile</button>
             <div class="navbar">
-                {!cookies.access_token ?  <a href="http://localhost:3000/register">Register</a> : <div>
+                {!cookies.access_token ?  
+                    <a href="http://localhost:3000/register">Register</a> : <div>
                     <button class="logout-button" onClick={logout}>Logout</button> 
-                    <button onClick={goToPreferences}>Edit Preferences</button>
-                    <div>
-                       User Logged in: {localStorage.getItem("userID")}
-
-                    </div>
                 </div>}
                 <a href="http://localhost:3000/aboutus">About Us</a>
             </div>

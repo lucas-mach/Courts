@@ -55,7 +55,14 @@ app.post("/register", async (req,res) => {
     }
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = new UserModel({ username, password: hashedPassword, football: false, basketball: false, tennis: false});
+    const newUser = new UserModel(  {   username, 
+                                        password: hashedPassword, 
+                                        sex: 0, 
+                                        age: 0,
+                                        football: false, 
+                                        basketball: false, 
+                                        tennis: false
+                                    });
     await newUser.save();
 
     res.json({message: "User Registered Successfully"});
@@ -64,9 +71,11 @@ app.post("/register", async (req,res) => {
 
 app.post("/editPreferences", async (req,res) => {
     
-    const {username, football, basketball, tennis} = req.body;
+    const {username, sex, age, football, basketball, tennis} = req.body;
     let user = await UserModel.findOne({username: username});
     if (user) {
+        user.sex = sex;
+        user.age = age;
         user.football = football;
         user.basketball = basketball;
         user.tennis = tennis;
@@ -78,9 +87,6 @@ app.post("/editPreferences", async (req,res) => {
 
 
 })
-
-
-
 
 //Start the server on port 3001 because react automatically uses port 3000
 app.listen(3001, () => {

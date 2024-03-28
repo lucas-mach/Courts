@@ -10,6 +10,14 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    sex: {
+        type: Number,
+        required: true,
+    },
+    age: {
+        type: Number,
+        required: true,
+    },
     football: {
         type: Boolean,
         required: true,
