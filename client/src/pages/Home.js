@@ -26,7 +26,7 @@ function Home() {
             <div class="navbar">
                 {!cookies.access_token ?  
                     <a href="http://localhost:3000/register">Register</a> : <div>
-                        <button class="edit-profile" onClick={goToPreferences}>{localStorage.getItem("userID")}: Profile</button>
+                        <button class="edit-profile" onClick={goToPreferences}>{localStorage.getItem("userID")}: Profile Edit</button>
                     <button class="logout-button" onClick={logout}>Logout</button> 
                 </div>}
                 <a href="http://localhost:3000/aboutus">About Us</a>
