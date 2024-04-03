@@ -6,14 +6,15 @@ import Register from "./pages/Register"
 import Login from "./pages/Login"
 import Aboutus from "./pages/aboutus"
 import EditPreferences from './pages/EditPreferences';
-
+import Navbar from './pages/Navbar';
 
 
 function App() {
   return (
     <div className="App">
-      
       <Router> 
+        <div>
+          <Navbar/>
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/register" element={<Register/>}/>
@@ -21,6 +22,7 @@ function App() {
           <Route path="/aboutus" element={<Aboutus/>}/>
           <Route path="/editPreferences" element={<EditPreferences/>}/>
         </Routes>
+        </div>
       </Router>
     </div>
   );

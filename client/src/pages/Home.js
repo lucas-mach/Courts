@@ -5,34 +5,54 @@ import { useNavigate } from "react-router-dom";
 
 //Home Page
 function Home() {
+
     const [cookies, setCookies] = useCookies(["access_token"]);
-    const naviagate = useNavigate();
+    const navigate = useNavigate();
+
+    const register = () => {
+        navigate("/register");
+    }
     const logout = () => {
         setCookies("access_token", "");
         window.localStorage.removeItem("userID");
-        naviagate("/login");
+        navigate("/login");
     }
     const goToPreferences = () => {
-        naviagate("/editPreferences");
+        navigate("/editPreferences");
     }
- 
-
 
     return (
-        <div>
-            <h1>Courts</h1>
-            
-            
-            <div class="navbar">
-                {!cookies.access_token ?  
-                    <a href="http://localhost:3000/register">Register</a> : <div>
-                        <button class="edit-profile" onClick={goToPreferences}>{localStorage.getItem("userID")}: Profile Edit</button>
-                    <button class="logout-button" onClick={logout}>Logout</button> 
-                </div>}
-                <a href="http://localhost:3000/aboutus">About Us</a>
+        <section id = "homeSection" className = "homeSection">
+            <div className = "homeSectionImg">
+                <img src = "./img/logo-colored.png" alt = "Logo"/>
             </div>
-
-        </div>
+            
+            <div className =  "homeSectionContentBox">
+                <div classname = "homeSectionContent">
+                    <p className = "homeSectionTitle">
+                        Hey, we're Courts.
+                    </p>
+                    <p className = "homeSectionDescription">
+                    “Courts” is a website designed to aid students at the University of Florida
+                    in finding other students with similar sports interests and bringing them together in the real world.
+                    </p>
+                </div>
+                <div>
+                    {!cookies.access_token ?  
+                    <button className = "btn btn-primary" onClick = {register}>
+                        Join Courts now!
+                    </button> :
+                    <div>
+                        <button className = "btn btn-primary" onClick={goToPreferences}>
+                            {localStorage.getItem("userID")}: Profile Edit
+                        </button>
+                        <button className="btn btn-primary" onClick={logout}>
+                            Logout
+                        </button> 
+                    </div>}
+                </div>
+            </div>
+        </section>
     );
 }
 
