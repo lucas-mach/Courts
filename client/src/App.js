@@ -7,6 +7,7 @@ import Login from "./pages/Login"
 import Aboutus from "./pages/aboutus"
 import EditPreferences from './pages/EditPreferences';
 import Navbar from './pages/Navbar';
+import OnBoarding from './pages/OnBoarding';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" element={<Login/>}/>
           <Route path="/aboutus" element={<Aboutus/>}/>
           <Route path="/editPreferences" element={<EditPreferences/>}/>
+          <Route path="/onBoarding" element={<OnBoarding/>}/>
         </Routes>
         </div>
       </Router>

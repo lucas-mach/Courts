@@ -46,9 +46,6 @@ function Home() {
                         <button className = "btn btn-primary" onClick={goToPreferences}>
                             {localStorage.getItem("userID")}: Profile Edit
                         </button>
-                        <button className="btn btn-primary" onClick={logout}>
-                            Logout
-                        </button> 
                     </div>}
                 </div>
             </div>

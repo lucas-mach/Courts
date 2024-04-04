@@ -137,21 +137,20 @@ h2 {
   padding: 0px 65px;
   align-items: center;
 }
-
 .siteTitle {
-  display: flex;
+  display: inline;
 }
-
 .siteTitle a > img {
-  width: 25%;
-  height: 25%;
+  width: 35%;
+  height: 35%;
 }
 
 .navbar ul {
+  padding: 0;
+  margin: 0;
   list-style: none;
   display: flex;
-  gap: 42.667px;
-  align-items: flex-start;
+  gap: 1rem;
 }
 
 .navbar a {
@@ -161,11 +160,17 @@ h2 {
   display: flex;
   padding: 25px;
 }
+/*
+.navbar ul {
+  list-style: none;
+  display: inline;
+  gap: 42.667px;
+}
 
 .navbar li.active {
   background-color: #555;
 }
-
+*/
 /* Home Page */
 .homeSection {
   display: grid;
@@ -199,7 +204,6 @@ h2 {
   align-self: stretch;
 }
 
-
 .homeSectionDescription {
   color: var(--courtBrown);
   font-size: 24px;
@@ -228,7 +232,7 @@ h2 {
 /* Register Section */
 .registerSection {
   display: grid;
-  padding: 133.3px 85.3px;
+  padding: 133.3px 85.3px 0px;
   align-items: center;
   gap: 114.6px;
   grid-template-columns: repeat(2, 1fr);
@@ -267,4 +271,95 @@ h2 {
   border-radius: 8px;
   border: 1.333px solid var(--paleVioletRed);
   background: var(--white);
+}
+
+/* Edit Preferences */
+.editPreferences {
+  display: flex;
+  padding: 133.3px 85.3px;
+  align-items: center;
+  gap: 114.6px;
+}
+
+/* OnBoarding Page */
+.onboarding form {
+  display: grid;
+  padding: 16px 85.3px;
+  align-items: top;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.onboarding form section {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  text-align: start;
+}
+
+.onboarding form input {
+  font-family: "Khand";
+  padding: 16px 16px;
+  margin: 10px 0;
+  font-size: 15px;
+  border: solid 2px var(--paleVioletRed);
+  border-radius: 10px;
+}
+
+.onboarding form input::-webkit-outer-spin-button,
+.onboarding form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.onboarding form label {
+  padding: 20px 10px 0px 0px;
+  font-size: 18px;
+}
+
+.onboarding form .multiple-input-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.onboarding form .multiple-input-container input {
+  margin-right: 10px;
+}
+
+.onboarding form .multiple-input-container label {
+  padding: 10px;
+  border: solid 2px var(--paleVioletRed);
+  border-radius: 10px;
+  transition: all 0.3s;
+  margin-right: 10px;
+}
+
+.onboarding form input[type="number"] {
+  width: 10%;
+}
+
+.onboarding form input[type="radio"] {
+  display: none;
+}
+
+.onboarding form input[type="radio"] + label {
+  font-size: 15px;
+}
+
+.onboarding form input[type="radio"]:checked + label {
+  color: var(--white);
+  background-color: var(--paleVioletRed);
+  border: 2px solid var(--paleVioletRed);
+}
+
+.onboarding form .photo-container img{
+  width:100%;
+}
+
+.onboarding form input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.onboarding form input[type="checkbox"] + label {
+  margin-right: 10px;
+  font-size: 15px;
 }

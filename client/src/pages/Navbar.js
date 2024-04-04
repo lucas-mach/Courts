@@ -10,7 +10,7 @@ export default function Navbar()
     const logout = () => {
         setCookies("access_token", "");
         window.localStorage.removeItem("userID");
-        navigate("/login");
+        navigate("/");
     }
 
     return (
@@ -24,27 +24,27 @@ export default function Navbar()
                 <li>
                     <a href = "/aboutus"> About Us</a>
                 </li>
+                <li>
+                    <a href = "/onboarding"> Test </a>
+                </li>
 
-                <div>
-                    {!cookies.access_token ?  
+                {!cookies.access_token ?  
                     <li>
-                        <a href = "/register">
-                            Register
-                        </a>
+                        <a href = "/register">Register</a>
                     </li> :
                     <div>
+                        <ul>
                         <li>
                             <a href = "/editPreferences">
                             {localStorage.getItem("userID")}: Profile Edit
                             </a>
                         </li>
                         <li>
-                            <a onClick = {logout}>
-                                Logout
-                            </a>
+                            <a href = "/" onClick = {logout}>Logout</a>
                         </li>
-                    </div>}
-                </div>
+                        </ul>
+                    </div>
+                }
             </ul>
         </nav>
     )
