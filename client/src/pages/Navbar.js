@@ -25,7 +25,7 @@ export default function Navbar()
                     <a href = "/aboutus"> About Us</a>
                 </li>
                 <li>
-                    <a href = "/onboarding"> Test </a>
+                    <a href = "/onboarding"> OnBoarding </a>
                 </li>
 
                 {!cookies.access_token ?  
