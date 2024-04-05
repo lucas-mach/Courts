@@ -23,49 +23,59 @@ function Login() {
             window.localStorage.setItem("userID", response.data.username);
             navigate("/");
         }
-        
-        
     }
     catch (err){
         console.error(err);
     }
   };
 
-
     return (
-        <div>
-            <h2>Login Page</h2>
+        <section id = "Login" className = "registerSection">
+            <div className = "homeSectionContentBox">
+                    <div className = "homeSectionContent">
+                        <p className = "sectionTitle">
+                            Login Page
+                        </p>
+                        <h1>
+                            LOG IN
+                        </h1>
+                    </div>
+                <form className = "loginContainer">
+                    <div className = "container">
+                        <input
+                        type= "text"
+                        className = "loginInput text-md"
+                        placeholder= "username..."
+                        value={username}
+                        onChange={(event) => {
+                            setUsername(event.target.value);
+                            }}
+                        />
 
-            <a href="http://localhost:3000/" class="home">Home</a>   
-
-            <div class="credentials">
-                <p>Please enter your username and password.</p>
-                <input
-                    type="text"
-                    placeholder="username..."
-                    value={username}
-                    onChange={(event) => {
-                        setUsername(event.target.value);
-                        }}
-                />
-                <input 
-                    type="password" 
-                    placeholder="password..."
-                    value={password}
-                    onChange={(event) => {
-                        setPassword(event.target.value);
-                        }}
-                />
-                <button onClick={loginUser}>
-                    Login
-                </button>
-
-                <div>
-                    <p>Don't have an account?</p>
-                    <a href="http://localhost:3000/register">Create An Account</a>
-                </div>
+                        <input 
+                        type="text" 
+                        className = "loginInput text-md"
+                        placeholder="password..."
+                        value={password}
+                        onChange={(event) => {
+                            setPassword(event.target.value);
+                            }}
+                        />
+                    </div>
+                    <button className = "btn btn-primary" onClick={loginUser}>
+                        Login
+                    </button>
+                    <div>
+                        <p className = "text-md">
+                            Don't have an account?
+                        </p>
+                        <a href="/register">
+                            Create An Account
+                        </a>
+                    </div>
+                </form>
             </div>
-        </div>
+        </section>
     );
 }
 

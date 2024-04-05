@@ -1,38 +1,365 @@
-.App {
+@import url('https://fonts.googleapis.com/css?family=Karantina:Bold|Khand');
+
+
+/* Global CSS */
+body {
+  margin: 0;
+  font-family: "Khand", sans-serif;
+  -webkit-font-smoothing: "Khand", sans-serif;
+  -moz-osx-font-smoothing: "Khand", sans-serif;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+:root {
+  --paleVioletRed: #d87093;
+  --wheat: #F5deb3;
+  --courtBrown: #493f3e;
+  --eggshell: #fcf4e9;
+  --black: #000000;
+  --white: #ffffff;
+}
+
+.btn {
+  font-family: "Khand";
+  display: inline-block;
+  padding: 14px 32px;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  cursor: pointer;
   text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  transition: background-color 0.5s;
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -ms-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.btn-outline-primary {
+  color: var(--paleVioletRed);
+  background-color: var(--white);
+  border: 1px solid var(--paleVioletRed);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.btn-outline-primary:hover {
+  color: var(--white);
+  background-color: var(--paleVioletRed);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.btn-primary {
+  color: var(--white);
+  background-color: var(--paleVioletRed);
+  border: 1px solid var(--paleVioletRed);
+}
+
+.btn-primary:hover {
+  color: var(--paleVioletRed);
+  background-color: var(--white);
+}
+
+/* Main Headings */
+h1 {
+  font-family: "Karantina";
+  font-size: 100px;
+  line-height: 67px;
+  color: var(--paleVioletRed);
+}
+
+h2 {
+  font-family: "Karantina";
+  font-size: 40px;
+  line-height: 58px;
+  color: var(--paleVioletRed);
+}
+
+/* Paragraph Text Large, Med, Small */
+.text-lg {
+  color: var(--courtBrown);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 27px;
+}
+.text-md {
+  color: var(--courtBrown);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+.text-sm {
+  color: var(--black);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+/* Section Title */
+.sectionTitle {
+  color: var(--paleVioletRed);
+  font-size: 21px;
+  text-align: center;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.subtitle {
+  color: var(--paleVioletRed);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+/* Navbar Style */
+.navbar {
+  background-color: var(--paleVioletRed);
+  color: var(--white);
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 65px;
+  align-items: center;
+}
+.siteTitle {
+  display: inline;
+}
+.siteTitle a > img {
+  width: 35%;
+  height: 35%;
+}
+
+.navbar ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar a {
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  padding: 25px;
+}
+/*
+.navbar ul {
+  list-style: none;
+  display: inline;
+  gap: 42.667px;
+}
+
+.navbar li.active {
+  background-color: #555;
+}
+*/
+/* Home Page */
+.homeSection {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 130px 85px 130px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  background-color: var(---black);
+}
+
+.homeSectionContentBox {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.homeSectionContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 21.333px;
+}
+
+.homeSectionTitle {
+  color: var(--paleVioletRed);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 90px;
+  align-self: stretch;
+}
+
+.homeSectionDescription {
+  color: var(--courtBrown);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 36px;
+}
+
+.homeSectionImg {
+  display: flex;
+}
+
+.homeSectionImg > img {
+  width: 80%;
+  height: 80%;
+}
+
+/* About Us Section */
+.aboutSection {
+  display: grid;
+  padding: 133.3px 85.3px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 114.6px;
+  grid-template-columns: repeat(2, 1fr);
 }
 
-.App-link {
-  color: #61dafb;
+/* Register Section */
+.registerSection {
+  display: grid;
+  padding: 133.3px 85.3px 0px;
+  align-items: center;
+  gap: 114.6px;
+  grid-template-columns: repeat(2, 1fr);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.loginContainer {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(5, auto);
+  width: 40%;
+  row-gap: 32px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  column-gap: 32px;
+  row-gap: 32px;
+}
+
+.loginLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10.6px;
+  flex: 1 0 0;
+  width: 100%;
+}
+
+.loginInput {
+  display: flex;
+  font-family: "Khand";
+  padding: 16px;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1.333px solid var(--paleVioletRed);
+  background: var(--white);
+}
+
+/* Edit Preferences */
+.editPreferences {
+  display: flex;
+  padding: 133.3px 85.3px;
+  align-items: center;
+  gap: 114.6px;
+}
+
+/* OnBoarding Page */
+.onboarding form {
+  display: grid;
+  padding: 16px 85.3px;
+  align-items: top;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.onboarding form section {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  text-align: start;
+}
+
+.onboarding form input {
+  font-family: "Khand";
+  padding: 16px 16px;
+  margin: 10px 0;
+  font-size: 15px;
+  border: solid 2px var(--paleVioletRed);
+  border-radius: 10px;
+}
+
+.onboarding form input::-webkit-outer-spin-button,
+.onboarding form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.onboarding form label {
+  padding: 20px 10px 0px 0px;
+  font-size: 18px;
+}
+
+.onboarding form .multiple-input-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.onboarding form .multiple-input-container input {
+  margin-right: 10px;
+}
+
+.onboarding form .multiple-input-container label {
+  padding: 10px;
+  border: solid 2px var(--paleVioletRed);
+  border-radius: 10px;
+  transition: all 0.3s;
+  margin-right: 10px;
+}
+
+.onboarding form input[type="number"] {
+  width: 10%;
+}
+
+.onboarding form input[type="radio"] {
+  display: none;
+}
+
+.onboarding form input[type="radio"] + label {
+  font-size: 15px;
+}
+
+.onboarding form input[type="radio"]:checked + label {
+  color: var(--white);
+  background-color: var(--paleVioletRed);
+  border: 2px solid var(--paleVioletRed);
+}
+
+.onboarding form .photo-container img{
+  width:100%;
+}
+
+.onboarding form input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.onboarding form input[type="checkbox"] + label {
+  margin-right: 10px;
+  font-size: 15px;
 }

@@ -57,11 +57,15 @@ app.post("/register", async (req,res) => {
 
     const newUser = new UserModel(  {   username, 
                                         password: hashedPassword, 
-                                        sex: 0, 
-                                        age: 0,
+                                        sex: "", 
+                                        age: "",
                                         football: false, 
                                         basketball: false, 
-                                        tennis: false
+                                        tennis: false,
+                                        first_name: "",
+                                        about: "",
+                                        url: "",
+
                                     });
     await newUser.save();
 
@@ -87,6 +91,25 @@ app.post("/editPreferences", async (req,res) => {
 
 
 })
+app.post("/onboarding", async (req,res) => {
+
+    const { username, first_name, age, sex, url, about, football, basketball, tennis} = req.body;
+    
+    let user = await UserModel.findOne({username: username});
+    if (user) {
+        user.first_name = first_name;
+        user.age = age;
+        user.sex = sex;
+        user.url = url;
+        user.about = about;
+        user.football = football;
+        user.basketball = basketball;
+        user.tennis = tennis;
+        await user.save()
+    }
+    res.json({message: "Created Profile"})
+
+});
 
 //Start the server on port 3001 because react automatically uses port 3000
 app.listen(3001, () => {

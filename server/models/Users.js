@@ -11,26 +11,35 @@ const UserSchema = new mongoose.Schema({
         required: true,
     },
     sex: {
-        type: Number,
-        required: true,
+        type: String,
+        
     },
     age: {
-        type: Number,
-        required: true,
+        type: String,
+       
     },
     football: {
         type: Boolean,
-        required: true,
+        
     },
     basketball: {
         type: Boolean,
-        required: true,
+        
     },
     tennis: {
         type: Boolean,
-        required: true,
-    }
+        
+    },
+    about: {
+        type: String,
 
+    },
+    url: {
+        type: String
+    },
+    first_name: {
+        type: String
+    },
 
 });
 

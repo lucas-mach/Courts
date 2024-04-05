@@ -1,10 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 
 function Register() {
+    const navigate = useNavigate();
+
     //State containing our users
  
   const [username, setUsername] = useState("");
@@ -17,6 +20,7 @@ function Register() {
     try {
         await axios.post("http://localhost:3001/register", {username: username, password: password});
         alert("registration completed");
+        navigate("/login");
     }
     catch (err) {
         console.error(err);
@@ -25,39 +29,51 @@ function Register() {
 
 
     return (
-        <div>
-            <h2>Register Page</h2>
-            <a href="http://localhost:3000/" class="home">Home</a>
-            
-            <div class="credentials">
-                <p>New users</p>
-                <input
-                    type="text"
-                    placeholder="username..."
-                    value={username}
-                    onChange={(event) => {
-                        setUsername(event.target.value);
-                        }}
-                />
-                <input 
-                    type="text" 
-                    placeholder="password..."
-                    value={password}
-                    onChange={(event) => {
-                        setPassword(event.target.value);
-                        }}
-                />
-                <button onClick={createUser}>
-                    Create User
-                </button>
-                <div>
-                    <p>Already have an account?</p>
-                    <a href="http://localhost:3000/login">Login</a>
-                </div>
+        <section id = "Register" className = "registerSection">
+            <div className = "homeSectionContentBox">
+                    <div className = "homeSectionContent">
+                        <p className = "sectionTitle">
+                            Registration
+                        </p>
+                        <h1>
+                            REGISTER
+                        </h1>
+                    </div>
+                <form className = "loginContainer">
+                    <div className = "container">
+                        <input
+                        type= "text"
+                        className = "loginInput text-md"
+                        placeholder= "username..."
+                        value={username}
+                        onChange={(event) => {
+                            setUsername(event.target.value);
+                            }}
+                        />
+                        <input 
+                        type="text" 
+                        className = "loginInput text-md"
+                        placeholder="password..."
+                        value={password}
+                        onChange={(event) => {
+                            setPassword(event.target.value);
+                            }}
+                        />
+                    </div>
+                    <button className = "btn btn-primary" onClick={createUser}>
+                        Create User
+                    </button>
+                    <div>
+                        <p className = "text-md">
+                            Already have an account?
+                        </p>
+                        <a href="/login">
+                            Login
+                        </a>
+                    </div>
+                </form>
             </div>
-            
-            
-        </div>
+        </section>
     );
 }
 

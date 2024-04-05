@@ -2,14 +2,21 @@ import React from "react";
 
 function aboutus() {
     return (
-        <div>
-            <h1>The Team</h1>
-            <a href="/" class="home">Home</a>
-
-            <div>
-                <p>We are courts.</p>
+        <section id = "AboutMe" className = "aboutSection">
+            <div className = "homeSectionContentBox">
+                <div className = "homeSectionContent">
+                    <p className = "sectionTitle">
+                        About Us
+                    </p>
+                    <h1>
+                        THE TEAM
+                    </h1>
+                    <p className = "homeSectionDescription">
+                        Courts was developed by a team of 4 University of Florida students.
+                    </p>
+                </div>
             </div>
-        </div>
+        </section>
     );
 }
 
