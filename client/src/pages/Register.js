@@ -20,7 +20,7 @@ function Register() {
     try {
         await axios.post("http://localhost:3001/register", {username: username, password: password});
         alert("registration completed");
-        navigate("/");
+        navigate("/login");
     }
     catch (err) {
         console.error(err);

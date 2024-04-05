@@ -14,23 +14,36 @@ const OnBoarding = () => {
         sex:'man',
         url: '',
         about: '',
-        matches: [],
         football: false,
         basketball: false,
         tennis: false
     })
 
     const handleSubmit = async (e) => {
-        alert("registration completed")
+        
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:3001/onboarding", { formData })
-            const success = response.statusCode === 200
-            if (success) navigate('/')
+            
+            const response = await axios.post("http://localhost:3001/onboarding", { 
+        username: formData.username,
+        first_name : formData.first_name,
+        age: formData.age,
+        sex : formData.sex,
+        url : formData.url,
+        about : formData.about,
+        football : formData.football,
+        basketball : formData.basketball,
+        tennis : formData.tennis
+
+     })
+        navigate('/')
+            
+            
         }
         catch(err) {
             console.error(err);
         }
+        alert("registration completed")
     }
 
     const handleChange =(e) => {
@@ -163,7 +176,7 @@ const OnBoarding = () => {
                         name = "url"
                         id = "url"
                         onChange={handleChange}
-                        required={true}
+                        required={false}
                     />
                     <div className = "photo-container">
                         {formData.url && <img src={formData.url} alt="Profile Pic Preview"/>}
