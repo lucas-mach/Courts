@@ -4,35 +4,53 @@ const UserSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        unique: true,
+        unique: true
     },
     password: {
         type: String,
-        required: true,
+        required: true
+    },
+    college: {
+        type: String
     },
     sex: {
-        type: String,
-        
+        type: String
     },
     age: {
-        type: String,
-       
+        type: String
     },
-    football: {
-        type: Boolean,
-        
+    baseball: {
+        type: Boolean
     },
     basketball: {
-        type: Boolean,
-        
+        type: Boolean
+    },
+    cycling: {
+        type: Boolean
+    },
+    football: {
+        type: Boolean
+    },
+    golf: {
+        type: Boolean
+    },
+    tableTennis: {
+        type: Boolean
     },
     tennis: {
-        type: Boolean,
-        
+        type: Boolean
+    },
+    running: {
+        type: Boolean
+    },
+    soccer: {
+        type: Boolean
+    },
+    volleyball: {
+        type: Boolean
     },
     about: {
-        type: String,
-
+        type: String
     },
     url: {
         type: String

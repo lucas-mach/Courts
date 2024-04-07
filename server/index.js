@@ -59,9 +59,17 @@ app.post("/register", async (req,res) => {
                                         password: hashedPassword, 
                                         sex: "", 
                                         age: "",
-                                        football: false, 
-                                        basketball: false, 
+                                        college: "",
+                                        baseball: false,
+                                        basketball: false,
+                                        cycling: false,
+                                        football: false,
+                                        golf: false,
+                                        tableTennis: false,
                                         tennis: false,
+                                        running: false,
+                                        soccer: false,
+                                        volleyball: false,
                                         first_name: "",
                                         about: "",
                                         url: "",
@@ -75,14 +83,22 @@ app.post("/register", async (req,res) => {
 
 app.post("/editPreferences", async (req,res) => {
     
-    const {username, sex, age, football, basketball, tennis} = req.body;
+    const {username, sex, age, college, baseball, basketball, cycling, football, golf, tableTennis, tennis, running, soccer, volleyball} = req.body;
     let user = await UserModel.findOne({username: username});
     if (user) {
         user.sex = sex;
         user.age = age;
-        user.football = football;
+        user.college = college;
+        user.baseball = baseball;
         user.basketball = basketball;
+        user.cycling = cycling;
+        user.football = football;
+        user.golf = golf;
+        user.tableTennis = tableTennis;
         user.tennis = tennis;
+        user.running = running;
+        user.soccer = soccer;
+        user.volleyball = volleyball;
         await user.save();
     }
     
@@ -93,7 +109,7 @@ app.post("/editPreferences", async (req,res) => {
 })
 app.post("/onboarding", async (req,res) => {
 
-    const { username, first_name, age, sex, url, about, football, basketball, tennis} = req.body;
+    const { username, first_name, age, sex, url, about, college, baseball, basketball, cycling, football, golf, tableTennis, tennis, running, soccer, volleyball} = req.body;
     
     let user = await UserModel.findOne({username: username});
     if (user) {
@@ -102,9 +118,17 @@ app.post("/onboarding", async (req,res) => {
         user.sex = sex;
         user.url = url;
         user.about = about;
-        user.football = football;
+        user.college = college;
+        user.baseball = baseball;
         user.basketball = basketball;
+        user.cycling = cycling;
+        user.football = football;
+        user.golf = golf;
+        user.tableTennis = tableTennis;
         user.tennis = tennis;
+        user.running = running;
+        user.soccer = soccer;
+        user.volleyball = volleyball;
         await user.save()
     }
     res.json({message: "Created Profile"})

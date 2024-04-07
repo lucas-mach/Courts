@@ -14,9 +14,17 @@ const OnBoarding = () => {
         sex:'man',
         url: '',
         about: '',
-        football: false,
+        college: "",
+        baseball: false,
         basketball: false,
-        tennis: false
+        cycling: false,
+        football: false,
+        golf: false,
+        tableTennis: false,
+        tennis: false,
+        running: false,
+        soccer: false,
+        volleyball: false
     })
 
     const handleSubmit = async (e) => {
@@ -31,10 +39,17 @@ const OnBoarding = () => {
         sex : formData.sex,
         url : formData.url,
         about : formData.about,
-        football : formData.football,
+        college : formData.college,
+        baseball : formData.baseball,
         basketball : formData.basketball,
-        tennis : formData.tennis
-
+        cycling : formData.cycling,
+        football : formData.football,
+        golf: formData.golf,
+        tableTennis: formData.tableTennis,
+        tennis : formData.tennis,
+        running : formData.running,
+        soccer : formData.soccer,
+        volleyball : formData.volleyball
      })
         navigate('/')
             
@@ -84,6 +99,16 @@ const OnBoarding = () => {
                         value={formData.first_name}
                         onChange={handleChange}
                     />
+                    <label>College</label>
+                    <input
+                        id="college"
+                        type="text"
+                        name="college"
+                        placeholder="Name of Institution"
+                        required={true}
+                        value={formData.college}
+                        onChange={handleChange}
+                    />
                     <label>Age</label>
                     <input
                         id="age"
@@ -130,12 +155,12 @@ const OnBoarding = () => {
                     <div>
                         <input 
                         type="checkbox"
-                        id="football"
-                        name="football"
+                        id="baseball"
+                        name="baseball"
                         onChange={handleChange}
-                        checked={formData.football}
+                        checked={formData.baseball}
                         />
-                        <label>Football</label>
+                        <label>Baseball</label>
                         <input 
                         type="checkbox"
                         id="basketball"
@@ -146,12 +171,68 @@ const OnBoarding = () => {
                         <label>Basketball</label>
                         <input 
                         type="checkbox"
+                        id="cycling"
+                        name="cycling"
+                        onChange={handleChange}
+                        checked={formData.cycling}
+                        />
+                        <label>Cycling</label>
+                        <input 
+                        type="checkbox"
+                        id="football"
+                        name="football"
+                        onChange={handleChange}
+                        checked={formData.football}
+                        />
+                        <label>Football</label>
+                        <input 
+                        type="checkbox"
+                        id="golf"
+                        name="golf"
+                        onChange={handleChange}
+                        checked={formData.golf}
+                        />
+                        <label>Golf</label>
+                        <input 
+                        type="checkbox"
+                        id="tableTennis"
+                        name="tableTennis"
+                        onChange={handleChange}
+                        checked={formData.tableTennis}
+                        />
+                        <label>Table Tennis</label>
+                        <input 
+                        type="checkbox"
                         id="tennis"
                         name="tennis"
                         onChange={handleChange}
                         checked={formData.tennis}
                         />
                         <label>Tennis</label>
+                        <input 
+                        type="checkbox"
+                        id="running"
+                        name="running"
+                        onChange={handleChange}
+                        checked={formData.running}
+                        />
+                        <label>Running</label>
+                        <input 
+                        type="checkbox"
+                        id="soccer"
+                        name="soccer"
+                        onChange={handleChange}
+                        checked={formData.soccer}
+                        />
+                        <label>Soccer</label>
+                        <input 
+                        type="checkbox"
+                        id="volleyball"
+                        name="volleyball"
+                        onChange={handleChange}
+                        checked={formData.volleyball}
+                        />
+                        <label>Volleyball</label>
                     </div>
 
                     <label htmlFor="about">About Me</label>

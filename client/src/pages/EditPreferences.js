@@ -6,25 +6,55 @@ import { useNavigate } from "react-router-dom";
 
 function EditPreferences() {
 
-    const [football, setfootball] = useState(false);
-    const [basketball, setbasketball] = useState(false);
-    const [tennis, settennis] = useState(false);
-    const [sex, setsex] = useState(0);
-    const [age, setage] = useState(0);
     const username = localStorage.getItem("userID");
     const naviagate = useNavigate();
+
+    const [formData, setFormData] = useState({
+        username: username,
+        //college: "",
+        baseball: false,
+        basketball: false,
+        cycling: false,
+        football: false,
+        golf: false,
+        tableTennis: false,
+        tennis: false,
+        running: false,
+        soccer: false,
+        volleyball: false
+    })
+
+    const handleChange =(e) => {
+        const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
+        const name = e.target.name
+
+        setFormData((prevState) => ({
+            ...prevState,
+            [name] : value
+        }))
+    }
+
+    console.log(formData)
 
 
     const editPref = async (event) => {
         event.preventDefault();
         try {
             const response = await axios.post("http://localhost:3001/editPreferences", 
-            {   username: username, 
-                sex: sex,
-                age: age,
-                football: football, 
-                basketball: basketball, 
-                tennis: tennis,
+            {   username: formData.username, 
+                sex: formData.sex,
+                age: formData.age,
+                college: formData.college,
+                baseball: formData.baseball,
+                basketball: formData.basketball,
+                cycling: formData.cycling,
+                football: formData.football, 
+                golf: formData.golf,
+                tableTennis: formData.tableTennis,
+                tennis: formData.tennis,
+                running: formData.running,
+                soccer: formData.soccer,
+                volleyball: formData.volleyball
             });
             naviagate("/");
         }
@@ -49,72 +79,100 @@ function EditPreferences() {
     //});
 
     return (
-        <div>
-            <a href="/" class="home">Home</a>
+        <div classname = "onboarding">
+            <section className = "registerSection">
+                <div className = "homeSectionContentBox">
+                    <div className = "homeSectionContent">
+                        <h1>PROFILE</h1>
+                    </div>
+                </div>
+            </section>
 
-            <h2>Profile</h2>
-            
-            <div class="checkboxes">
-                <label for="sex-option">Sex: </label>
-                <label>
-                    <input type="checkbox" name="sex-option" value="male" onClick = {(event) => {setsex(1)}}></input>
-                    Male
-                </label>
-                <label>
-                    <input type="checkbox" name="sex-option" value="female" onClick={(event)=>{setsex(2)}}></input>
-                    Female
-                </label>
-            </div>
-
-            <label for="age">Age: </label>
-            <input  type="number" 
-                    value={age} 
-                    name="age" 
-                    min="18" 
-                    max="120" 
-                    onChange={(event)=>{setage(event.target.value)}}>
-            </input>
-
-
-            <div>
-                <label>Football</label>
-                <input 
-                type="checkbox" 
-                onClick = {(event) => {
-                    if (football) {
-                        setfootball(false);
-                    } else {
-                        setfootball(true);
-                    }
-                }}>
-                </input>
-            </div>
-            <div>
-                <label>Basketball</label>
-                <input 
-                type="checkbox" 
-                onClick = {(event) => {
-                    if (basketball) {
-                        setbasketball(false);
-                    } else {
-                        setbasketball(true);
-                    }
-                }}>
-                </input>
-            </div>
-            <div>
-                <label>Tennis</label>
-                <input 
-                type="checkbox" 
-                onClick = {(event) => {
-                    if (tennis) {
-                        settennis(false);
-                    } else {
-                        settennis(true);
-                    }
-                }}>
-                </input>
-            </div>
+            <section>
+                <label htmlFor="sports-pref">Sports Preferences</label>
+                <div>
+                    <input 
+                    type="checkbox"
+                    id="baseball"
+                    name="baseball"
+                    onChange={handleChange}
+                    checked={formData.baseball}
+                    />
+                    <label>Baseball</label>
+                    <input 
+                    type="checkbox"
+                    id="basketball"
+                    name="basketball"
+                    onChange={handleChange}
+                    checked={formData.basketball}
+                    />
+                    <label>Basketball</label>
+                    <input 
+                    type="checkbox"
+                    id="cycling"
+                    name="cycling"
+                    onChange={handleChange}
+                    checked={formData.cycling}
+                    />
+                    <label>Cycling</label>
+                    <input 
+                    type="checkbox"
+                    id="football"
+                    name="football"
+                    onChange={handleChange}
+                    checked={formData.football}
+                    />
+                    <label>Football</label>
+                    <input 
+                    type="checkbox"
+                    id="golf"
+                    name="golf"
+                    onChange={handleChange}
+                    checked={formData.golf}
+                    />
+                    <label>Golf</label>
+                    <input 
+                    type="checkbox"
+                    id="tableTennis"
+                    name="tableTennis"
+                    onChange={handleChange}
+                    checked={formData.tableTennis}
+                    />
+                    <label>Table Tennis</label>
+                    <input 
+                    type="checkbox"
+                    id="tennis"
+                    name="tennis"
+                    onChange={handleChange}
+                    checked={formData.tennis}
+                    />
+                    <label>Tennis</label>
+                    <input 
+                    type="checkbox"
+                    id="running"
+                    name="running"
+                    onChange={handleChange}
+                    checked={formData.running}
+                    />
+                    <label>Running</label>
+                    <input 
+                    type="checkbox"
+                    id="soccer"
+                    name="soccer"
+                    onChange={handleChange}
+                    checked={formData.soccer}
+                    />
+                    <label>Soccer</label>
+                    <input 
+                    type="checkbox"
+                    id="volleyball"
+                    name="volleyball"
+                    onChange={handleChange}
+                    checked={formData.volleyball}
+                    />
+                    <label>Volleyball</label>
+                </div>
+            </section>
             <div>
                 <button onClick={editPref}>Submit</button>
             </div>
