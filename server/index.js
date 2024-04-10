@@ -16,10 +16,96 @@ app.use(cors());
 mongoose.connect("mongodb+srv://courts:CEN_TEAM_27@cluster0.l3pyct1.mongodb.net/Courts?retryWrites=true&w=majority&appName=Cluster0");
 
 //Make request to get user data from database, wait for the response before trying to send the json data, using async and await
-app.get("/getUsers", async (req,res) => {
+
+//Req should be username, and all sports preferences
+//Response will be a list of all usernames 
+app.get("/getUsersSimilar", async (req,res) => {
+
+    const users = [];
+    const {username, football, basketball, tennis, baseball, cycling, golf, tableTennis, running, soccer, volleyball } = req.body;
+    
     try {
-        const data = await UserModel.find({});
-        res.json(data);
+        if (football) {
+            const data = await UserModel.find({football});
+            for (i in data) {
+                if (!(data[i].username in users) && data[i].username != username) {
+                    users.push(data[i].username)
+                }
+            }
+        }
+        if (basketball) {
+            const data = await UserModel.find({basketball});
+            for (i in data) {
+                if (!(data[i].username in users) && data[i].username != username) {
+                    users.push(data[i].username)
+                }
+            }
+        }
+        if (tennis) {
+            const data = await UserModel.find({tennis});
+            for (i in data) {
+                if (!(data[i].username in users) && data[i].username != username) {
+                    users.push(data[i].username)
+                }
+            }
+        }
+        if (baseball) {
+            const data = await UserModel.find({baseball});
+            for (i in data) {
+                if (!(data[i].username in users) && data[i].username != username) {
+                    users.push(data[i].username)
+                }
+            }
+        }
+        if (cycling) {
+            const data = await UserModel.find({cycling});
+            for (i in data) {
+                if (!(data[i].username in users) && data[i].username != username) {
+                    users.push(data[i].username)
+                }
+            }
+        }
+        if (golf) {
+            const data = await UserModel.find({golf});
+            for (i in data) {
+                if (!(data[i].username in users) && data[i].username != username) {
+                    users.push(data[i].username)
+                }
+            }
+        }
+        if (tableTennis) {
+            const data = await UserModel.find({tableTennis});
+            for (i in data) {
+                if (!(data[i].username in users) && data[i].username != username) {
+                    users.push(data[i].username)
+                }
+            }
+        }
+        if (running) {
+            const data = await UserModel.find({running});
+            for (i in data) {
+                if (!(data[i].username in users) && data[i].username != username) {
+                    users.push(data[i].username)
+                }
+            }
+        }
+        if (soccer) {
+            const data = await UserModel.find({soccer});
+            for (i in data) {
+                if (!(data[i].username in users) && data[i].username != username) {
+                    users.push(data[i].username)
+                }
+            }
+        }
+        if (volleyball) {
+            const data = await UserModel.find({volleyball});
+            for (i in data) {
+                if (!(data[i].username in users) && data[i].username != username) {
+                    users.push(data[i].username)
+                }
+            }
+        }
+        res.json(users);
     } catch (err) {
         res.json(err);
     }
