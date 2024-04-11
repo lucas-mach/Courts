@@ -8,6 +8,7 @@ import Aboutus from "./pages/aboutus"
 import EditPreferences from './pages/EditPreferences';
 import Navbar from './pages/Navbar';
 import OnBoarding from './pages/OnBoarding';
+import TinderCards from './TinderCards.js';
 
 
 function App() {
