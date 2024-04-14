@@ -5,7 +5,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const UserModel = require("./models/Users.js");
-
+const MatchModel = require("./models/Match.js")
 const cors = require("cors");
 
 //Allow the json body to be read as an object
@@ -17,12 +17,44 @@ mongoose.connect("mongodb+srv://courts:CEN_TEAM_27@cluster0.l3pyct1.mongodb.net/
 
 //Make request to get user data from database, wait for the response before trying to send the json data, using async and await
 
+app.get("/card/:id", async(req,res) => {
+    try {
+        const {id} = req.params;
+
+        const user = await UserModel.findOne({username: id});
+        res.json(user)
+    } catch (err) {
+        res.json(err)
+    }
+})
+
+app.post("/getUser", async (req,res) => {
+    const {username} = req.body;
+    
+    
+    try {
+        const user = await UserModel.findOne( {username: username});
+        
+        if (!user) {
+            return res.json({ message: "User doesn't exist!"});
+        }
+        
+        res.json(user)
+    } catch (err) {
+        res.json(err)
+    }
+});
+
+
 //Req should be username, and all sports preferences
 //Response will be a list of all usernames 
-app.get("/getUsersSimilar", async (req,res) => {
+app.post("/getUsersSimilar", async (req,res) => {
 
     const users = [];
-    const {username, football, basketball, tennis, baseball, cycling, golf, tableTennis, running, soccer, volleyball } = req.body;
+    const {_username} = req.body;
+    
+    const user = await UserModel.findOne({_username});
+    const {username, football, basketball, tennis, baseball, cycling, golf, tableTennis, running, soccer, volleyball } = user;
     
     try {
         if (football) {
@@ -105,6 +137,7 @@ app.get("/getUsersSimilar", async (req,res) => {
                 }
             }
         }
+        console.log(users)
         res.json(users);
     } catch (err) {
         res.json(err);
@@ -113,6 +146,7 @@ app.get("/getUsersSimilar", async (req,res) => {
 
 app.post("/login", async (req,res) => {
     const { username, password} = req.body;
+    
     const user = await UserModel.findOne( { username });
 
     if (!user) {
@@ -140,6 +174,7 @@ app.post("/register", async (req,res) => {
         return res.json({message: "User already exists"});
     }
     const hashedPassword = await bcrypt.hash(password, 10);
+    
 
     const newUser = new UserModel(  {   username, 
                                         password: hashedPassword, 
