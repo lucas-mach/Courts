@@ -11,8 +11,8 @@ const OnBoarding = () => {
         username: username,
         first_name: "",
         age: "",
-        sex:'man',
-        url: '',
+        sex:'Male',
+        url: 'https://www.kindpng.com/picc/m/451-4517876_default-profile-hd-png-download.png',
         about: '',
         college: "",
         baseball: false,
@@ -27,38 +27,34 @@ const OnBoarding = () => {
         volleyball: false
     })
 
-    const handleSubmit = async (e) => {
-        
+    const handleSubmit = async (e) => {        
         e.preventDefault();
         try {
-            
             const response = await axios.post("http://localhost:3001/onboarding", { 
-        username: formData.username,
-        first_name : formData.first_name,
-        age: formData.age,
-        sex : formData.sex,
-        url : formData.url,
-        about : formData.about,
-        college : formData.college,
-        baseball : formData.baseball,
-        basketball : formData.basketball,
-        cycling : formData.cycling,
-        football : formData.football,
-        golf: formData.golf,
-        tableTennis: formData.tableTennis,
-        tennis : formData.tennis,
-        running : formData.running,
-        soccer : formData.soccer,
-        volleyball : formData.volleyball
-     })
-        navigate('/')
-            
-            
+            username: formData.username,
+            first_name : formData.first_name,
+            age: formData.age,
+            sex : formData.sex,
+            url : formData.url,
+            about : formData.about,
+            college : formData.college,
+            baseball : formData.baseball,
+            basketball : formData.basketball,
+            cycling : formData.cycling,
+            football : formData.football,
+            golf: formData.golf,
+            tableTennis: formData.tableTennis,
+            tennis : formData.tennis,
+            running : formData.running,
+            soccer : formData.soccer,
+            volleyball : formData.volleyball
+            })
         }
         catch(err) {
             console.error(err);
         }
         alert("registration completed")
+        navigate('/dashboard')
     }
 
     const handleChange =(e) => {
@@ -79,9 +75,6 @@ const OnBoarding = () => {
             <section id = "Register" className = "registerSection">
             <div className = "homeSectionContentBox">
                 <div className = "homeSectionContent">
-                    <p className = "sectionTitle">
-                        Edit Preferences
-                    </p>
                     <h1>PROFILE</h1>
                 </div>
             </div>
@@ -126,27 +119,27 @@ const OnBoarding = () => {
                             id="man-gender-identity"
                             type="radio"
                             name="sex"
-                            value="man"
+                            value="Male"
                             onChange={handleChange}
-                            checked={formData.sex === 'man'}
+                            checked={formData.sex === 'Male'}
                         />
                         <label htmlFor="man-gender-identity">Male</label>
                         <input
                             id="woman-gender-identity"
                             type="radio"
                             name="sex"
-                            value="woman"
+                            value="Female"
                             onChange={handleChange}
-                            checked={formData.sex === 'woman'}
+                            checked={formData.sex === 'Female'}
                         />
                         <label htmlFor="woman-gender-identity">Female</label>
                         <input
                             id="more-gender-identity"
                             type="radio"
                             name="sex"
-                            value="more"
+                            value="Other"
                             onChange={handleChange}
-                            checked={formData.sex === 'more'}
+                            checked={formData.sex === 'Other'}
                         />
                         <label htmlFor="more-gender-identity">Other</label>
                     </div>

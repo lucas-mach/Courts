@@ -38,7 +38,7 @@ export default function Navbar()
                             </a>
                         </li>
                         <li>
-                            <a href = "/onboarding"> Onboarding </a>
+                            <a href = "/swipe"> Dashboard </a>
                         </li>
                         <li>
                             <a href = "/" onClick = {logout}>Logout</a>

@@ -27,6 +27,7 @@ p {
 }
 
 .btn {
+  margin-top: 20px;
   font-family: "Khand";
   display: inline-block;
   padding: 14px 32px;
@@ -47,6 +48,21 @@ p {
   -moz-transition: background-color 0.5s;
   -ms-transition: background-color 0.5s;
   -o-transition: background-color 0.5s;
+}
+
+.btn-as-text {
+  font-size: 36px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  margin-top: 20px;
+  color: var(--paleVioletRed);
+}
+
+.btn-as-text:hover {
+  color: var(--black)
 }
 
 .btn-outline-primary {
@@ -356,7 +372,7 @@ h2 {
 }
 
 .onboarding form input[type="checkbox"] {
-  margin-right: 5px;
+  margin-right: 8px;
 }
 
 .onboarding form input[type="checkbox"] + label {
