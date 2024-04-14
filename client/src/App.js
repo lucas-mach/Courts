@@ -8,6 +8,7 @@ import Aboutus from "./pages/aboutus"
 import EditPreferences from './pages/EditPreferences';
 import Navbar from './pages/Navbar';
 import OnBoarding from './pages/OnBoarding';
+import TinderCards from './pages/Tindercard';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/aboutus" element={<Aboutus/>}/>
           <Route path="/editPreferences" element={<EditPreferences/>}/>
           <Route path="/onBoarding" element={<OnBoarding/>}/>
+          <Route path="/swipe" element={<TinderCards/>}/>
         </Routes>
         </div>
       </Router>

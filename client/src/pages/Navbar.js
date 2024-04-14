@@ -24,9 +24,7 @@ export default function Navbar()
                 <li>
                     <a href = "/aboutus"> About Us</a>
                 </li>
-                <li>
-                    <a href = "/onboarding"> OnBoarding </a>
-                </li>
+                
 
                 {!cookies.access_token ?  
                     <li>
@@ -38,6 +36,9 @@ export default function Navbar()
                             <a href = "/editPreferences">
                             {localStorage.getItem("userID")}: Profile Edit
                             </a>
+                        </li>
+                        <li>
+                            <a href = "/onboarding"> Onboarding </a>
                         </li>
                         <li>
                             <a href = "/" onClick = {logout}>Logout</a>

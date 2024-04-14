@@ -17,7 +17,7 @@ function Login() {
     try {
         const response = await axios.post("http://localhost:3001/login", {username: username, password: password});
         setCookies("access_token", response.data.username);
-        if (response.data.username != username) {
+        if (response.data.username !== username) {
             alert("Wrong username/password")
         } else {
             window.localStorage.setItem("userID", response.data.username);
