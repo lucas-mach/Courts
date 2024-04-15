@@ -137,7 +137,7 @@ app.post("/getUsersSimilar", async (req,res) => {
                 }
             }
         }
-        console.log(users)
+        
         res.json(users);
     } catch (err) {
         res.json(err);

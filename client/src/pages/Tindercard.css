@@ -12,9 +12,18 @@
   
   .card > h3 {
     position: absolute;
-    bottom: -30px;
+    bottom: -10px;
     color: black;
     font-style: bold;
+    
+  }
+  .Info {
+   
+    position: absolute;
+    bottom: -70px; /* Adjust the distance from the bottom */
+    left: 20px; /* Adjust the distance from the left */
+    color: black;
+    margin: 0; /* Remove default margin */
     
   }
   
