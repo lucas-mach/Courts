@@ -58,12 +58,15 @@ const UserSchema = new mongoose.Schema({
     first_name: {
         type: String
     },
+    matches: {
+        type: Array
+    }
 
 });
 
 const UserModel = mongoose.model("users", UserSchema);
 
-UserModel.associate
+
 
 
 module.exports = UserModel;

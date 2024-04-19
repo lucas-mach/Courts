@@ -14,6 +14,17 @@ function TinderCards() {
   const [users, setUsers] = useState([]);
   const username =  localStorage.getItem("userID")
 
+  const addMatch = async (event) => {
+    if (event) {
+      event.preventDefault();
+    }
+    try {
+      const resp = await axios.post("http://localhost:3001/addMatch", {username: username, matchUsername : user.username});
+    } catch(err) {
+      console.err(err)
+    }
+  }
+
   const getUser = async (event) => {
     if (event) {
       event.preventDefault();
@@ -22,11 +33,7 @@ function TinderCards() {
         console.log(index)
         const resp = await axios.get(`http://localhost:3001/card/${users[index]}`, );
         setIndex(index+1)
-        setUser(resp.data)
-        
-        
-       
-        
+        setUser(resp.data)  
     }
     catch (err) {
         console.error(err);
