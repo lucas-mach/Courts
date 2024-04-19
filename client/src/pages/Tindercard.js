@@ -69,6 +69,7 @@ function TinderCards() {
     } else if (direction === 'right') {
       console.log(`${username} swiped right`);
       addMatch();
+      getUsers();
       getUser();
       // Perform actions for right swipe
     }

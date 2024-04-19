@@ -16,12 +16,13 @@ mongoose.connect("mongodb+srv://courts:CEN_TEAM_27@cluster0.l3pyct1.mongodb.net/
 
 app.post("/addMatch", async(req,res)=> {
     const {username, matchUsername} = req.body;
-    
-    
     try {
         let user = await UserModel.findOne({username: username});
-        user.matches.push(String(matchUsername));
+        if (!user.matches.includes(matchUsername)) {
+          
+            user.matches.push(String(matchUsername));
         await user.save();
+        }
         res.json("sent")
     } catch (err) {
         res.json(err)
@@ -75,7 +76,7 @@ app.post("/getUsersSimilar", async (req,res) => {
         if (football) {
             const data = await UserModel.find({football});
             for (i in data) {
-                if (!(users.includes(data[i].username)) && data[i].username != String(username)) {
+                if (!(users.includes(data[i].username)) && data[i].username != String(username) && (!user.matches.includes(data[i].username))) {
                     users.push(data[i].username)
                 }
             }
@@ -83,7 +84,7 @@ app.post("/getUsersSimilar", async (req,res) => {
         if (basketball) {
             const data = await UserModel.find({basketball});
             for (i in data) {
-                if (!(users.includes(data[i].username)) && data[i].username != String(username)) {
+                if (!(users.includes(data[i].username)) && data[i].username != String(username)&& (!user.matches.includes(data[i].username))) {
                     users.push(data[i].username)
                 }
             }
@@ -91,7 +92,7 @@ app.post("/getUsersSimilar", async (req,res) => {
         if (tennis) {
             const data = await UserModel.find({tennis});
             for (i in data) {
-                if (!(users.includes(data[i].username)) && data[i].username != String(username)) {
+                if (!(users.includes(data[i].username)) && data[i].username != String(username)&& (!user.matches.includes(data[i].username))) {
                     users.push(data[i].username)
                 }
             }
@@ -99,7 +100,7 @@ app.post("/getUsersSimilar", async (req,res) => {
         if (baseball) {
             const data = await UserModel.find({baseball});
             for (i in data) {
-                if (!(users.includes(data[i].username)) && data[i].username != String(username)) {
+                if (!(users.includes(data[i].username)) && data[i].username != String(username)&& (!user.matches.includes(data[i].username))) {
                     users.push(data[i].username)
                 }
             }
@@ -107,7 +108,7 @@ app.post("/getUsersSimilar", async (req,res) => {
         if (cycling) {
             const data = await UserModel.find({cycling});
             for (i in data) {
-                if (!(users.includes(data[i].username)) && data[i].username != String(username)) {
+                if (!(users.includes(data[i].username)) && data[i].username != String(username)&& (!user.matches.includes(data[i].username))) {
                     users.push(data[i].username)
                 }
             }
@@ -115,7 +116,7 @@ app.post("/getUsersSimilar", async (req,res) => {
         if (golf) {
             const data = await UserModel.find({golf});
             for (i in data) {
-                if (!(users.includes(data[i].username)) && data[i].username != String(username)) {
+                if (!(users.includes(data[i].username)) && data[i].username != String(username)&& (!user.matches.includes(data[i].username))) {
                     users.push(data[i].username)
                 }
             }
@@ -123,7 +124,7 @@ app.post("/getUsersSimilar", async (req,res) => {
         if (tableTennis) {
             const data = await UserModel.find({tableTennis});
             for (i in data) {
-                if (!(users.includes(data[i].username)) && data[i].username != String(username)) {
+                if (!(users.includes(data[i].username)) && data[i].username != String(username)&& (!user.matches.includes(data[i].username))) {
                     users.push(data[i].username)
                 }
             }
@@ -131,7 +132,7 @@ app.post("/getUsersSimilar", async (req,res) => {
         if (running) {
             const data = await UserModel.find({running});
             for (i in data) {
-                if (!(users.includes(data[i].username)) && data[i].username != String(username)) {
+                if (!(users.includes(data[i].username)) && data[i].username != String(username)&& (!user.matches.includes(data[i].username))) {
                     users.push(data[i].username)
                 }
             }
@@ -139,7 +140,7 @@ app.post("/getUsersSimilar", async (req,res) => {
         if (soccer) {
             const data = await UserModel.find({soccer});
             for (i in data) {
-                if (!(users.includes(data[i].username)) && data[i].username != String(username)) {
+                if (!(users.includes(data[i].username)) && data[i].username != String(username)&& (!user.matches.includes(data[i].username))) {
                     users.push(data[i].username)
                 }
             }
@@ -147,7 +148,7 @@ app.post("/getUsersSimilar", async (req,res) => {
         if (volleyball) {
             const data = await UserModel.find({volleyball});
             for (i in data) {
-                if (!(users.includes(data[i].username)) && data[i].username != String(username)) {
+                if (!(users.includes(data[i].username)) && data[i].username != String(username)&& (!user.matches.includes(data[i].username))) {
                     users.push(data[i].username)
                 }
             }
