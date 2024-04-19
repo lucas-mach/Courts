@@ -15,10 +15,12 @@ function TinderCards() {
   const username =  localStorage.getItem("userID")
 
   const addMatch = async (event) => {
+    
     if (event) {
       event.preventDefault();
     }
     try {
+      console.log(username, user.username)
       const resp = await axios.post("http://localhost:3001/addMatch", {username: username, matchUsername : user.username});
     } catch(err) {
       console.err(err)
@@ -33,6 +35,9 @@ function TinderCards() {
         console.log(index)
         const resp = await axios.get(`http://localhost:3001/card/${users[index]}`, );
         setIndex(index+1)
+        if (index > users.length) {
+          setIndex(0)
+        }
         setUser(resp.data)  
     }
     catch (err) {
@@ -53,6 +58,19 @@ function TinderCards() {
     }
     catch (err) {
         console.error(err);
+    }
+  };
+
+  const handleSwipe = (direction, username) => {
+    if (direction === 'left') {
+      console.log(`${username} swiped left`);
+      getUser();
+      // Perform actions for left swipe
+    } else if (direction === 'right') {
+      console.log(`${username} swiped right`);
+      addMatch();
+      getUser();
+      // Perform actions for right swipe
     }
   };
   useEffect(() => {
@@ -88,6 +106,7 @@ function TinderCards() {
             className="swipe"
             key={user.username}
             preventSwipe={['up', 'down']}
+            onSwipe={(direction) => handleSwipe(direction, user.username)}
           >
             <div 
               style={{backgroundImage: `url(${user.url})`}}

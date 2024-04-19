@@ -17,10 +17,12 @@ mongoose.connect("mongodb+srv://courts:CEN_TEAM_27@cluster0.l3pyct1.mongodb.net/
 app.post("/addMatch", async(req,res)=> {
     const {username, matchUsername} = req.body;
     
+    
     try {
-        UserModel.updateOne(
-            { _id: userId }, // Query to find the user document
-            { $push: { matches: matchUsername } })
+        let user = await UserModel.findOne({username: username});
+        user.matches.push(String(matchUsername));
+        await user.save();
+        res.json("sent")
     } catch (err) {
         res.json(err)
     }
@@ -68,7 +70,7 @@ app.post("/getUsersSimilar", async (req,res) => {
     
     const {username, football, basketball, tennis, baseball, cycling, golf, tableTennis, running, soccer, volleyball } = user;
 
-    console.log(user)
+
     try {
         if (football) {
             const data = await UserModel.find({football});
@@ -207,6 +209,7 @@ app.post("/register", async (req,res) => {
                                         first_name: "",
                                         about: "",
                                         url: "",
+                                        register: []
 
                                     });
     await newUser.save();
