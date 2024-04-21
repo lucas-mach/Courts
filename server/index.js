@@ -334,8 +334,8 @@ app.get("/chats/:id", async (req, res) => {
     try {
         const { username, contact} = req.query;
 
-        console.log(username);
-        console.log(contact);
+        // console.log(username);
+        // console.log(contact);
 
         //find users based on usernames provided
         let sender = await UserModel.findOne({username : username});
@@ -348,9 +348,9 @@ app.get("/chats/:id", async (req, res) => {
         let array = [];
 
         if (conversation) {
-            conversation.messages.forEach(message => {
-                console.log("Message:", message.message); // Assuming message content is stored in 'message' field
-            });
+            // conversation.messages.forEach(message => {
+            //     console.log("Message:", message.message); // Assuming message content is stored in 'message' field
+            // });
             array = conversation.messages;
         } else {
             console.log("Conversation not found.");
@@ -369,8 +369,17 @@ app.get("/chats", async (req, res) => {
         console.log("getting users");
         const { username } = req.query;
         const user = await UserModel.findOne({ username : username });
-        const matches = await UserModel.find({ _id: { $ne: user } }).select("-password");
+        let matches = await UserModel.find({ _id: { $ne: user } }).select("-password");
         if (matches) {
+            matches = matches.filter(participant => {
+                
+                if (!user.matches.includes(participant.username)) {
+                    return false;
+                } else {
+                    return true;
+                }
+            })
+    
             matches.forEach(participants => {
                 console.log("User:", participants.username); // Assuming message content is stored in 'message' field
             });
@@ -378,6 +387,7 @@ app.get("/chats", async (req, res) => {
             console.log("Conversation not found.");
         }
         console.log("returning users");
+        console.log(matches)
         res.status(200).json(matches);
     } catch (error) {
         console.error("Error in getMatches: ", error.message);
