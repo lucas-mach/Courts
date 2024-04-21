@@ -41,6 +41,9 @@ export default function Navbar()
                             <a href = "/swipe"> Dashboard </a>
                         </li>
                         <li>
+                            <a href = "/chats"> Chats </a>
+                        </li>
+                        <li>
                             <a href = "/" onClick = {logout}>Logout</a>
                         </li>
                         </ul>

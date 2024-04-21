@@ -3,13 +3,18 @@ const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 const express = require("express");
 const app = express();
+const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const UserModel = require("./models/Users.js");
+const messageModel = require("./models/message.js");
+//const chatModel = require("./models/chats.js");
 const cors = require("cors");
+const chatModel = require("./models/chat.js");
 
 //Allow the json body to be read as an object
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 
 //Connect to cloud database "Drivers" =>add password and name of database on Compass
 mongoose.connect("mongodb+srv://courts:CEN_TEAM_27@cluster0.l3pyct1.mongodb.net/Courts?retryWrites=true&w=majority&appName=Cluster0");
@@ -58,7 +63,6 @@ app.post("/getUser", async (req,res) => {
         res.json(err)
     }
 });
-
 
 //Req should be username, and all sports preferences
 //Response will be a list of all usernames 
@@ -245,6 +249,7 @@ app.post("/editPreferences", async (req,res) => {
 
 
 })
+
 app.post("/onboarding", async (req,res) => {
 
     const { username, first_name, age, sex, url, about, college, baseball, basketball, cycling, football, golf, tableTennis, tennis, running, soccer, volleyball} = req.body;
@@ -272,6 +277,123 @@ app.post("/onboarding", async (req,res) => {
     res.json({message: "Created Profile"})
 
 });
+
+app.post("/chats", async (req,res) => {
+    try {
+        const { message, username, contact} = req.body;
+
+        //find users based on usernames provided
+        let sender = await UserModel.findOne({username: username});
+        let reciever = await UserModel.findOne({username : contact});
+
+        //check if sender and recievers are properly located
+        if (!sender) {
+            return res.status(404).json({ error: "Sender not found" });
+        }
+
+        if (!reciever) {
+            return res.status(404).json({ error: "Reciever not found" });
+        }
+        
+        //look for preexisting conversation index in mongo
+        let conversation = await chatModel.findOne({
+            participants: { $all: [sender._id, reciever._id] }
+        });
+
+        //create new convo if it doesn't exist
+        if(!conversation){
+            conversation = await chatModel.create({
+                participants: [sender._id, reciever._id]
+            });
+        }
+        
+        //create the message index
+        const newMessage = new messageModel({
+            senderId: sender._id,
+            recieverId: reciever._id,
+            message: message,
+        });
+
+        if(newMessage){
+            conversation.messages.push(newMessage._id);
+        };
+
+        //socket io functionality here
+
+        await Promise.all([conversation.save(), newMessage.save()]);
+
+        res.status(201).json(newMessage);
+
+    } catch (error) {
+        console.log("Error in send message: ", error.message);
+        res.setMaxListeners(500).json({ error: "Internal Server Error"});
+    }
+});
+
+app.get("/chats/:id", async (req, res) => {
+    try {
+        const { username, contact} = req.query;
+
+        // console.log(username);
+        // console.log(contact);
+
+        //find users based on usernames provided
+        let sender = await UserModel.findOne({username : username});
+        let reciever = await UserModel.findOne({username : contact});
+
+        const conversation = await chatModel.findOne({
+            participants: { $all: [sender._id, reciever._id] }
+        }).populate("messages");
+
+        let array = [];
+
+        if (conversation) {
+            // conversation.messages.forEach(message => {
+            //     console.log("Message:", message.message); // Assuming message content is stored in 'message' field
+            // });
+            array = conversation.messages;
+        } else {
+            console.log("Conversation not found.");
+            
+        }
+
+        res.status(200).json(array);
+    } catch (error) {
+        console.log("Error in GetMessages: ", error.message);
+        res.status(500).json({ error : "Internal server error"});
+    }
+})
+
+app.get("/chats", async (req, res) => {
+    try {
+        console.log("getting users");
+        const { username } = req.query;
+        const user = await UserModel.findOne({ username : username });
+        let matches = await UserModel.find({ _id: { $ne: user } }).select("-password");
+        if (matches) {
+            matches = matches.filter(participant => {
+                
+                if (!user.matches.includes(participant.username)) {
+                    return false;
+                } else {
+                    return true;
+                }
+            })
+    
+            matches.forEach(participants => {
+                console.log("User:", participants.username); // Assuming message content is stored in 'message' field
+            });
+        } else {
+            console.log("Conversation not found.");
+        }
+        console.log("returning users");
+        console.log(matches)
+        res.status(200).json(matches);
+    } catch (error) {
+        console.error("Error in getMatches: ", error.message);
+        res.status(500).json({ error: "Internal server error"});
+    }
+})
 
 //Start the server on port 3001 because react automatically uses port 3000
 app.listen(3001, () => {

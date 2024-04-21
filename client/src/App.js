@@ -9,7 +9,7 @@ import EditPreferences from './pages/EditPreferences';
 import Navbar from './pages/Navbar';
 import OnBoarding from './pages/OnBoarding';
 import TinderCards from './pages/Tindercard';
-
+import Chats from './pages/Chats';
 
 function App() {
   return (
@@ -25,6 +25,7 @@ function App() {
           <Route path="/editPreferences" element={<EditPreferences/>}/>
           <Route path="/onBoarding" element={<OnBoarding/>}/>
           <Route path="/swipe" element={<TinderCards/>}/>
+          <Route path="/chats" element={<Chats/>}/>
         </Routes>
         </div>
       </Router>
