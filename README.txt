@@ -11,7 +11,8 @@ Helpful tools - If you want to test requests, you can use thunderbird extension 
 FRONTEND-----------------------------
 tip- use another terminal to run both servers,
 1. "cd client" (Make sure you are in client directory)
-2. "npm install axios react-cookie react-router-dom " (Install package to make api requests to backend)
+2. "npm install axios react-cookie react-router-dom" (Install package to make api requests to backend)
+2 a: New installs: "npm install zustand"
 3. "npm start" (Run react app, "Frontend")
 npm install --save react-tinder-card
 npm install --save @react-spring/web@9.5.5

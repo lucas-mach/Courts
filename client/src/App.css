@@ -379,3 +379,99 @@ h2 {
   margin-right: 10px;
   font-size: 15px;
 }
+
+
+/*My makeshift chat stuff :( */
+
+.chat{
+  display: flex;
+}
+
+.match-container {
+  display: flex; 
+  align-items: center; 
+  width: 100%;
+  background-color: palevioletred;
+  padding: 10px;
+  color: white;
+}
+
+.selected-match-container {
+  display: flex; /* Use flexbox layout */
+  align-items: center; /* Align items vertically */
+  width: 12%;
+  background-color: olivedrab;
+}
+
+.match-container:hover {
+  color: var(--white);
+  background-color: olivedrab;
+}
+
+.match-container img {
+  margin-right: 10px; 
+}
+
+.match-box{
+  overflow: auto;
+  background-color: wheat;
+  padding: 150px;
+  height: 300px;
+}
+
+.chat-divider{
+  width: 5px;
+  background-color: palevioletred;
+  height: 600px;
+}
+
+.message-box {
+  height: 300px;
+  padding: 150px;
+  background-color: wheat;
+}
+
+.messages-box {
+  background-color: wheat;
+  overflow: auto;
+  padding: 50px;;
+  height: 400px;
+}
+
+.send-message-box {
+  background-color: wheat;
+  overflow: auto;
+  height: 100px;
+}
+
+.chat-bubble-sender{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+  border-radius: 8px;
+  padding: 5px;
+  margin-bottom: 6px;
+}
+
+.chat-bubble-reciever{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: palevioletred;
+  border-radius: 8px;
+  padding: 5px;
+  margin-bottom: 6px;
+}
+
+.chat-bubble-right{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.chat-bubble-left{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
