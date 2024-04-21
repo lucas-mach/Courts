@@ -3,9 +3,9 @@ STEPS: Commands in terminal to run
 BACKEND---------------------
 1. "cd server" (Make sure you are in the server directory)
 2. "npm install express mongoose cors nodemon bcrypt jsonwebtoken"  (Install packages)
-
+mongodb+srv://courts:CEN_TEAM_27@cluster0.l3pyct1.mongodb.net/
 commands: to run backend-server "npm start"
-How to connect to database: 1. install MongoDB Compass,2.  paste "mongodb+srv://courts:CEN_TEAM_27@cluster0.l3pyct1.mongodb.net/" to New Connection
+How to connect to database: 1. install MongoDB Compass,2.  paste "" to New Connection
 Helpful tools - If you want to test requests, you can use thunderbird extension to create your own requests
 
 FRONTEND-----------------------------
