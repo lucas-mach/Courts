@@ -29,16 +29,13 @@ function Chats(){
         }
     };
 
-    useEffect(() => {
-        setTextMessages([]);
-    }, [selectedMatch]);
+    
 
     const useGetMatches = () => {
         const [matches, setMatches] = useState([]);
 
         useEffect(() => {
             const getMatches = async () => {
-                
                 try {
                     
                     const res = await axios.get("http://localhost:3001/chats", {
@@ -67,6 +64,7 @@ function Chats(){
         return () => setSelectedMatch(null)
     }, [])
 
+    
     useEffect(() => {
         const getMessages = async () => {
             try {
@@ -81,7 +79,12 @@ function Chats(){
             return { textMessages };
         }
         if(selectedMatch?._id) getMessages();
-    },[selectedMatch])
+    },[selectedMatch, sendMessage])
+
+    // useEffect(() => { 
+
+
+    // },[textMessages])
 
     const { matches } = useGetMatches();
     //const matches = matchObjects['matches'];
@@ -144,4 +147,3 @@ function Chats(){
 }
 
 export default Chats
-
