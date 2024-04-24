@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Table for chats
 const chatSchema = new mongoose.Schema(
     {
         participants: [

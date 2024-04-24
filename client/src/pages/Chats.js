@@ -10,7 +10,8 @@ import useMatch from "../zustand/useMatch.js";
 
 
 
-function Chats(){
+function Chats(){   
+    //Get username from storage
     const username = localStorage.getItem("userID");
     const navigate = useNavigate();
 
@@ -20,6 +21,7 @@ function Chats(){
     //change to contain data from database like editpref???
     const [message, setMessage] = useState("");
 
+    // Send message to other user
     const sendMessage = async (event) => {
         event.preventDefault();
         try{
@@ -29,11 +31,12 @@ function Chats(){
         }
     };
 
-    
+
 
     const useGetMatches = () => {
         const [matches, setMatches] = useState([]);
 
+        // Get chats when matches array changes
         useEffect(() => {
             const getMatches = async () => {
                 try {

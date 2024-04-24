@@ -7,6 +7,7 @@ export default function Navbar()
     const [cookies, setCookies] = useCookies(["access_token"]);
     const navigate = useNavigate();
 
+    // Deletes the user token so a user will "logout"
     const logout = () => {
         setCookies("access_token", "");
         window.localStorage.removeItem("userID");
@@ -25,7 +26,7 @@ export default function Navbar()
                     <a href = "/aboutus"> About Us</a>
                 </li>
                 
-
+                
                 {!cookies.access_token ?  
                     <li>
                         <a href = "/register">Register</a>

@@ -36,8 +36,9 @@ function Home() {
             
             <div className =  "homeSectionContentBox">
 
-                <div>
-                    {!cookies.access_token ?
+                {/* If a user token does not exsist then do not show all elements in our navbar */}
+                <div>   
+                    {!cookies.access_token ?    
                     <div>
                         <div classname = "homeSectionContent">
                             <p className = "homeSectionTitle">Hey, we're Courts.</p>

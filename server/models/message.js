@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+//Table for messages
 const messageSchema = new mongoose.Schema({
         senderId: {
            type: mongoose.Schema.Types.ObjectId,

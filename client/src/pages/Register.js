@@ -14,7 +14,7 @@ function Register() {
   const [password, setPassword] = useState("");
   //Api call to backend, runs when webpage opens
   
-
+    // Attempts to create a new user in our database
   const createUser = async (event) => {
     event.preventDefault();
     try {

@@ -17,7 +17,9 @@ function App() {
       <Router> 
         <div>
           <Navbar/>
-        <Routes>
+        <Routes>  
+
+          {/* Contains all our routes to pages in our application */}
           <Route path="/" element={<Home/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={<Login/>}/>

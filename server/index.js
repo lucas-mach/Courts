@@ -88,7 +88,7 @@ app.post("/getUsersSimilar", async (req,res) => {
     const {username, football, basketball, tennis, baseball, cycling, golf, tableTennis, running, soccer, volleyball } = user;
 
 
-    try {
+    try {   // Go found all users with that sport preference and add them to the list if they are not already added
         if (football) {
             const data = await UserModel.find({football});
             for (i in data) {
@@ -176,6 +176,7 @@ app.post("/getUsersSimilar", async (req,res) => {
     }
 });
 
+//Attempt to sign into an account, if successful add the username the token
 app.post("/login", async (req,res) => {
     const { username, password} = req.body;
     
@@ -234,7 +235,7 @@ app.post("/register", async (req,res) => {
     res.json({message: "User Registered Successfully"});
 
 });
-
+// Edit a users profile after it has already been made
 app.post("/editPreferences", async (req,res) => {
     
     const {username, first_name, sex, age, url, about, college, baseball, basketball, cycling, football, golf, tableTennis, tennis, running, soccer, volleyball} = req.body;
@@ -265,11 +266,13 @@ app.post("/editPreferences", async (req,res) => {
 
 })
 
+// Create a user profile
 app.post("/onboarding", async (req,res) => {
 
     const { username, first_name, age, sex, url, about, college, baseball, basketball, cycling, football, golf, tableTennis, tennis, running, soccer, volleyball} = req.body;
     
     let user = await UserModel.findOne({username: username});
+    //Make sure to find a user
     if (user) {
         user.first_name = first_name;
         user.age = age;
@@ -292,6 +295,7 @@ app.post("/onboarding", async (req,res) => {
     res.json({message: "Created Profile"})
 
 });
+
 
 app.post("/chats", async (req,res) => {
     try {
@@ -345,6 +349,7 @@ app.post("/chats", async (req,res) => {
     }
 });
 
+// Get the chat log from the user
 app.get("/chats/:id", async (req, res) => {
     try {
         const { username, contact} = req.query;
@@ -378,7 +383,7 @@ app.get("/chats/:id", async (req, res) => {
         res.status(500).json({ error : "Internal server error"});
     }
 })
-
+// Get a list of users who are matched with you to chat with
 app.get("/chats", async (req, res) => {
     try {
         console.log("getting users");

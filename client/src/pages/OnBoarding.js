@@ -3,10 +3,12 @@ import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+// Profile initial creation for the user
 const OnBoarding = () => {
     const username = localStorage.getItem("userID");
     const navigate = useNavigate();
 
+    //Initial values
     const [formData, setFormData] = useState({
         username: username,
         first_name: "",
@@ -54,9 +56,9 @@ const OnBoarding = () => {
             console.error(err);
         }
         alert("registration completed")
-        navigate('/swipe')
+        navigate('/swipe')  // navigate to swipe page when finished creating profile
     }
-
+    // Change formdata and update user input 
     const handleChange =(e) => {
         const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
         const name = e.target.name

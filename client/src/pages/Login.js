@@ -12,6 +12,7 @@ function Login() {
   const [_, setCookies] = useCookies(["access_token"])
   const navigate = useNavigate();
 
+  // Call backend api to attempt to log in the user with information given from the front end
   const loginUser = async (event) => {
     event.preventDefault();
     try {
