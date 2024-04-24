@@ -54,7 +54,7 @@ const OnBoarding = () => {
             console.error(err);
         }
         alert("registration completed")
-        navigate('/dashboard')
+        navigate('/swipe')
     }
 
     const handleChange =(e) => {

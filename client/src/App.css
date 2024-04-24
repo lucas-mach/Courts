@@ -469,6 +469,7 @@ h2 {
   border-radius: 8px;
   padding: 5px;
   margin-bottom: 6px;
+  max-width: 75%;
 }
 
 .chat-bubble-reciever{
@@ -479,6 +480,7 @@ h2 {
   border-radius: 8px;
   padding: 5px;
   margin-bottom: 6px;
+  max-width: 75%;
 }
 
 .chat-bubble-right{
