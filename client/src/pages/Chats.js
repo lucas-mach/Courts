@@ -10,7 +10,8 @@ import useMatch from "../zustand/useMatch.js";
 
 
 
-function Chats(){
+function Chats(){   
+    //Get username from storage
     const username = localStorage.getItem("userID");
     const navigate = useNavigate();
 
@@ -33,6 +34,7 @@ function Chats(){
     const useGetMatches = () => {
         const [matches, setMatches] = useState([]);
 
+        // Get chats when matches array changes
         useEffect(() => {
             const getMatches = async () => {
                 try {

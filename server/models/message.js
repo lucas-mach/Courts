@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 //database schema containing both users and message content.
+//Table for messages
 const messageSchema = new mongoose.Schema({
         senderId: {
            type: mongoose.Schema.Types.ObjectId,

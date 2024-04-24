@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 //database schema. Contains both users and an array of messages between them.
+// Table for chats
 const chatSchema = new mongoose.Schema(
     {
         participants: [

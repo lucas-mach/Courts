@@ -14,6 +14,7 @@ function TinderCards() {
   const [users, setUsers] = useState([]);
   const username =  localStorage.getItem("userID")
 
+
   const addMatch = async (event) => {
     
     if (event) {
@@ -135,6 +136,8 @@ function TinderCards() {
                   <h3 className="sports" >Sport Interests: {user.football ? <> <div>football</div>
                   </> : <div></div>} 
                   {user.basketball ? <> <div>basketball</div>
+                  </> : <div></div>} 
+                  {user.tennis ? <> <div>tennis</div>
                   </> : <div></div>} 
                   {user.baseball ? <> <div>baseball</div>
                   </> : <div></div>} 
