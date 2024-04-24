@@ -385,6 +385,18 @@ h2 {
 
 .chat{
   display: flex;
+  align-items: center;
+  width: auto;
+  border: 5px palevioletred;
+  padding: 30px;
+}
+
+.center-chat{
+  display: flex;
+  background-color: palevioletred;
+  margin: auto;
+  padding: 20px;
+  border-radius: 20px;
 }
 
 .match-container {
@@ -399,8 +411,9 @@ h2 {
 .selected-match-container {
   display: flex; /* Use flexbox layout */
   align-items: center; /* Align items vertically */
-  width: 12%;
+  width: 100%;
   background-color: olivedrab;
+  padding: 10px;
 }
 
 .match-container:hover {
@@ -417,17 +430,19 @@ h2 {
   background-color: wheat;
   padding: 150px;
   height: 300px;
+  width: 200px;
 }
 
 .chat-divider{
-  width: 5px;
+  width: 20px;
   background-color: palevioletred;
   height: 600px;
 }
 
 .message-box {
-  height: 300px;
-  padding: 150px;
+  height: 600px;
+  width: 500px;
+  text-align: center;
   background-color: wheat;
 }
 
@@ -436,10 +451,12 @@ h2 {
   overflow: auto;
   padding: 50px;;
   height: 400px;
+  width: 400px;
 }
 
 .send-message-box {
   background-color: wheat;
+  margin: auto;
   overflow: auto;
   height: 100px;
 }
@@ -474,4 +491,27 @@ h2 {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+
+.matching-page{
+  height: 1000px;
+  background-color: wheat;
+}
+
+.init-matching-page{
+  display: flex;
+  background-color: wheat;
+  height: 100%;
+  margin-top: auto;
+}
+
+.init-matching-center{
+  margin: auto;
+  text-align: center;
+  background-color: wheat;
+  padding: 20px;
+}
+
+.matching-no, .matching-yes{
+  margin: auto;
 }

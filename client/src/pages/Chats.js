@@ -55,7 +55,7 @@ function Chats(){
     const NoChatSelected = () => {
         return (
             <div className="message-box">
-                <p>Start Chatting!</p>            
+                <h2>Start Chatting!</h2>            
             </div>
         )
     }
@@ -87,60 +87,59 @@ function Chats(){
     // },[textMessages])
 
     const { matches } = useGetMatches();
-    //const matches = matchObjects['matches'];
 
     return (
         
         <div>
-            
             <div className="chat">
-                <div className="match-box">
-                    {matches.map((match) => (
-                        <Matches 
-                            key={match._id}
-                            match={match}
-                        />
-                    ))}
+                <div className="center-chat">
+                    <div className="match-box">
+                        <h2>Matches</h2>
+                        {matches.map((match) => (
+                            <Matches 
+                                key={match._id}
+                                match={match}
+                            />
+                        ))}
+                    </div>
+
+                    <div className="chat-divider"></div>
+                        {!selectedMatch ? (
+                            <NoChatSelected />
+                        ) : (
+                            <div className="message-box">
+                                <div className="messages-box">
+                                    {textMessages.map((textMessage) => (
+                                        <MessageBubble 
+                                            key={textMessage._id}
+                                            textMessage={textMessage}
+                                        />
+                                    ))}
+
+                                    
+                                    
+                                </div>
+
+                                <div className="send-message-box">
+                                <label>
+                                    <input
+                                        id="first_name"
+                                        type="text"
+                                        required={true}
+                                        placeholder="Write your messaage here..."
+                                        value={message}
+                                        onChange={(event) => {
+                                            setMessage(event.target.value);
+                                        }}
+                                        />
+                                </label>
+                                <button className = "btn btn-primary" onClick = {sendMessage}>
+                                    Send Message
+                                </button>
+                                </div>
+                            </div>
+                        )}
                 </div>
-
-                <div className="chat-divider"></div>
-
-                
-                    {!selectedMatch ? (
-                        <NoChatSelected />
-                    ) : (
-                        <div className=".message-box">
-                            <div className="messages-box">
-                                {textMessages.map((textMessage) => (
-                                    <MessageBubble 
-                                        key={textMessage._id}
-                                        textMessage={textMessage}
-                                    />
-                                ))}
-
-                                
-                                
-                            </div>
-
-                            <div className="send-message-box">
-                            <label>
-                                <input
-                                    id="first_name"
-                                    type="text"
-                                    required={true}
-                                    placeholder="Write your messaage here..."
-                                    value={message}
-                                    onChange={(event) => {
-                                        setMessage(event.target.value);
-                                    }}
-                                    />
-                            </label>
-                            <button className = "btn btn-primary" onClick = {sendMessage}>
-                                Send Message
-                            </button>
-                            </div>
-                        </div>
-                    )}
             </div>
         </div>
     )

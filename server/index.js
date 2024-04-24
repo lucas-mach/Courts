@@ -64,6 +64,18 @@ app.post("/getUser", async (req,res) => {
     }
 });
 
+app.get("/editPreferences", async (req, res) => {
+    try {
+        const { username } = req.query;
+        const user = await UserModel.findOne({ username : username });
+        
+        res.status(200).json(user);
+    } catch (error) {
+        console.error("Error in getting profile: ", error.message);
+        res.status(500).json({ error: "Internal server error"});
+    }
+})
+
 //Req should be username, and all sports preferences
 //Response will be a list of all usernames 
 app.post("/getUsersSimilar", async (req,res) => {
@@ -225,11 +237,14 @@ app.post("/register", async (req,res) => {
 
 app.post("/editPreferences", async (req,res) => {
     
-    const {username, sex, age, college, baseball, basketball, cycling, football, golf, tableTennis, tennis, running, soccer, volleyball} = req.body;
+    const {username, first_name, sex, age, url, about, college, baseball, basketball, cycling, football, golf, tableTennis, tennis, running, soccer, volleyball} = req.body;
     let user = await UserModel.findOne({username: username});
     if (user) {
+        user.first_name = first_name;
         user.sex = sex;
         user.age = age;
+        user.url = url;
+        user.about = about;
         user.college = college;
         user.baseball = baseball;
         user.basketball = basketball;
