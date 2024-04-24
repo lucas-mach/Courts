@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -7,18 +7,15 @@ function EditPreferences() {
     const username = localStorage.getItem("userID");
     const navigate = useNavigate();
 
-    const [isEditing, setIsEditing] = useState(false);
-
-    // change to contain data from database
-    const [formData, setFormData] = useState({
+    const [ThisUser, setThisUser] = useState({
         username: username,
         first_name: "",
         age: "",
-        sex:'Male',
+        sex:'',
         url: 'https://www.kindpng.com/picc/m/451-4517876_default-profile-hd-png-download.png',
         about: '',
         college: "",
-        baseball: false,
+        baseball: true,
         basketball: false,
         cycling: false,
         football: false,
@@ -28,37 +25,83 @@ function EditPreferences() {
         running: false,
         soccer: false,
         volleyball: false
-    })
+    });
+    
+    const [isEditing, setIsEditing] = useState(false);
+
+    useEffect(() => {
+        const getProfile = async () => {
+            try {
+                const res = await axios.get("http://localhost:3001/editPreferences", {
+                    params: { username : username }
+                });
+                setThisUser(res.data);
+                console.log("User: ", res.data);
+            } catch (err) {
+                console.error(err);
+            }
+            return { ThisUser };
+        }
+        getProfile();
+    },[])
+
+    // change to contain data from database
+    // const [formData, setFormData] = useState({
+    //     username: username,
+    //     first_name: "",
+    //     age: "",
+    //     sex:'Male',
+    //     url: 'https://www.kindpng.com/picc/m/451-4517876_default-profile-hd-png-download.png',
+    //     about: '',
+    //     college: "",
+    //     baseball: true,
+    //     basketball: false,
+    //     cycling: false,
+    //     football: false,
+    //     golf: false,
+    //     tableTennis: false,
+    //     tennis: false,
+    //     running: false,
+    //     soccer: false,
+    //     volleyball: false
+    // })
 
     const handleChange =(e) => {
         const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
         const name = e.target.name
 
-        setFormData((prevState) => ({
-            ...prevState,
+        // setFormData((prevState) => ({
+        //     ...prevState,
+        //     [name] : value
+        // }))
+
+        setThisUser({
+            ...ThisUser, 
             [name] : value
-        }))
+        })
     }
 
     const editPref = async (event) => {
         event.preventDefault();
         try {
             const response = await axios.post("http://localhost:3001/editPreferences", 
-            {   username: formData.username, 
-                first_name: formData.first_name,
-                sex: formData.sex,
-                age: formData.age,
-                college: formData.college,
-                baseball: formData.baseball,
-                basketball: formData.basketball,
-                cycling: formData.cycling,
-                football: formData.football, 
-                golf: formData.golf,
-                tableTennis: formData.tableTennis,
-                tennis: formData.tennis,
-                running: formData.running,
-                soccer: formData.soccer,
-                volleyball: formData.volleyball
+            {   username: ThisUser.username, 
+                first_name: ThisUser.first_name,
+                sex: ThisUser.sex,
+                age: ThisUser.age,
+                url: ThisUser.url,
+                about: ThisUser.about,
+                college: ThisUser.college,
+                baseball: ThisUser.baseball,
+                basketball: ThisUser.basketball,
+                cycling: ThisUser.cycling,
+                football: ThisUser.football, 
+                golf: ThisUser.golf,
+                tableTennis: ThisUser.tableTennis,
+                tennis: ThisUser.tennis,
+                running: ThisUser.running,
+                soccer: ThisUser.soccer,
+                volleyball: ThisUser.volleyball
             });
             alert("changes saved");
 
@@ -92,13 +135,13 @@ function EditPreferences() {
                         id="first_name"
                         type="text"
                         name="first_name"
-                        placeholder= {formData.first_name}
+                        placeholder= {"Your First Name"}
                         required={true}
-                        value={formData.first_name}
+                        value={ThisUser.first_name}
                         onChange={handleChange}
                         />
                     ) : (
-                        <b>{formData.first_name}</b>
+                        <b>{ThisUser.first_name}</b>
                     )}
                     </label>
 
@@ -110,11 +153,11 @@ function EditPreferences() {
                         name="college"
                         placeholder="Name of Institution"
                         required={true}
-                        value={formData.college}
+                        value={ThisUser.college}
                         onChange={handleChange}
                     />
                     ) : (
-                        <b>{formData.college}</b>
+                        <b>{ThisUser.college}</b>
                     )}
                     </label>
 
@@ -126,11 +169,11 @@ function EditPreferences() {
                         name="age"
                         placeholder="18"
                         required={true}
-                        value={formData.age}
+                        value={ThisUser.age}
                         onChange={handleChange}
                     />
                     ) : (
-                        <b>{formData.age}</b>
+                        <b>{ThisUser.age}</b>
                     )}
                     </label>
 
@@ -143,7 +186,7 @@ function EditPreferences() {
                             name="sex"
                             value="Male"
                             onChange={handleChange}
-                            checked={formData.sex === 'Male'}
+                            checked={ThisUser.sex === 'Male'}
                         />
                         <label htmlFor="man-gender-identity">Male</label>
                         <input
@@ -152,7 +195,7 @@ function EditPreferences() {
                             name="sex"
                             value="Female"
                             onChange={handleChange}
-                            checked={formData.sex === 'Female'}
+                            checked={ThisUser.sex === 'Female'}
                         />
                         <label htmlFor="woman-gender-identity">Female</label>
                         <input
@@ -161,12 +204,12 @@ function EditPreferences() {
                             name="sex"
                             value="Other"
                             onChange={handleChange}
-                            checked={formData.sex === 'Other'}
+                            checked={ThisUser.sex === 'Other'}
                         />
                         <label htmlFor="more-gender-identity">Other</label>
                     </div>
                     ) : (
-                        <b>{formData.sex}</b>
+                        <b>{ThisUser.sex}</b>
                     )}
                     </label>
                     
@@ -177,7 +220,7 @@ function EditPreferences() {
                             id="baseball"
                             name="baseball"
                             onChange={handleChange}
-                            checked={formData.baseball}
+                            checked={ThisUser.baseball}
                             />
                             <label>Baseball</label>
                             <input 
@@ -185,7 +228,7 @@ function EditPreferences() {
                             id="basketball"
                             name="basketball"
                             onChange={handleChange}
-                            checked={formData.basketball}
+                            checked={ThisUser.basketball}
                             />
                             <label>Basketball</label>
                             <input 
@@ -193,7 +236,7 @@ function EditPreferences() {
                             id="cycling"
                             name="cycling"
                             onChange={handleChange}
-                            checked={formData.cycling}
+                            checked={ThisUser.cycling}
                             />
                             <label>Cycling</label>
                             <input 
@@ -201,7 +244,7 @@ function EditPreferences() {
                             id="football"
                             name="football"
                             onChange={handleChange}
-                            checked={formData.football}
+                            checked={ThisUser.football}
                             />
                             <label>Football</label>
                             <input 
@@ -209,7 +252,7 @@ function EditPreferences() {
                             id="golf"
                             name="golf"
                             onChange={handleChange}
-                            checked={formData.golf}
+                            checked={ThisUser.golf}
                             />
                             <label>Golf</label>
                             <input 
@@ -217,7 +260,7 @@ function EditPreferences() {
                             id="tableTennis"
                             name="tableTennis"
                             onChange={handleChange}
-                            checked={formData.tableTennis}
+                            checked={ThisUser.tableTennis}
                             />
                             <label>Table Tennis</label>
                             <input 
@@ -225,7 +268,7 @@ function EditPreferences() {
                             id="tennis"
                             name="tennis"
                             onChange={handleChange}
-                            checked={formData.tennis}
+                            checked={ThisUser.tennis}
                             />
                             <label>Tennis</label>
                             <input 
@@ -233,7 +276,7 @@ function EditPreferences() {
                             id="running"
                             name="running"
                             onChange={handleChange}
-                            checked={formData.running}
+                            checked={ThisUser.running}
                             />
                             <label>Running</label>
                             <input 
@@ -241,7 +284,7 @@ function EditPreferences() {
                             id="soccer"
                             name="soccer"
                             onChange={handleChange}
-                            checked={formData.soccer}
+                            checked={ThisUser.soccer}
                             />
                             <label>Soccer</label>
                             <input 
@@ -249,7 +292,7 @@ function EditPreferences() {
                             id="volleyball"
                             name="volleyball"
                             onChange={handleChange}
-                            checked={formData.volleyball}
+                            checked={ThisUser.volleyball}
                             />
                             <label>Volleyball</label>
                         </div>
@@ -263,11 +306,11 @@ function EditPreferences() {
                         name="about"
                         required={true}
                         placeholder="Write a brief bio!"
-                        value={formData.about}
+                        value={ThisUser.about}
                         onChange={handleChange}
                     />
                     ) : (
-                        <b>{formData.about}</b>
+                        <b>{ThisUser.about}</b>
                     )}
                     </label>
                 </section>
@@ -283,11 +326,11 @@ function EditPreferences() {
                         required={false}
                         />
                     ) : (
-                        <b>{formData.url}</b>
+                        <b>{ThisUser.url}</b>
                     )}
                     </label>
                     <div className = "photo-container">
-                        {formData.url && <img src={formData.url} alt="Profile Pic Preview"/>}
+                        {ThisUser.url && <img src={ThisUser.url} alt="Profile Pic Preview"/>}
                     </div>
                 </section>
                 <div>
