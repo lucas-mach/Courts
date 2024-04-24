@@ -20,7 +20,11 @@ function Chats(){
 
     const [message, setMessage] = useState("");
 
+<<<<<<< HEAD
     //send message function. Stored in database
+=======
+    // Send message to other user
+>>>>>>> e33804a7078b14b9042108fa79f141d8e90ba6ab
     const sendMessage = async (event) => {
         event.preventDefault();
         try{
@@ -30,7 +34,12 @@ function Chats(){
         }
     };
 
+<<<<<<< HEAD
     //Get matches from database when page loads.
+=======
+
+
+>>>>>>> e33804a7078b14b9042108fa79f141d8e90ba6ab
     const useGetMatches = () => {
         const [matches, setMatches] = useState([]);
 
