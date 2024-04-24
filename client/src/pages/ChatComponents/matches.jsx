@@ -12,7 +12,7 @@ const Matches = ( {match} ) => {
             >
             {/* <div className="match-container"> */}
                 <img src="https://www.kindpng.com/picc/m/451-4517876_default-profile-hd-png-download.png" alt="Description of the image" width={50} height={50}></img>
-                <p>{match.username}</p>
+                <p>{match.first_name}</p>
             </div>
         </>
     );

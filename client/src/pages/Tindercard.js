@@ -73,6 +73,7 @@ function TinderCards() {
       getUser();
       // Perform actions for right swipe
     }
+
   };
   useEffect(() => {
     // This function will run when the component mounts
@@ -98,11 +99,21 @@ function TinderCards() {
     
     
     return (
-      <div>
-      <button onClick={getUser}>Click for new Potential Match</button>
+      <div className="matching-page">
 
-      {!user ? <h2>Find a new match</h2> :
+      {!user ? <>
+                <div className="init-matching-page">
+                  <div className="init-matching-center">
+                    <h2>Start Matching</h2> 
+                    <p>Start matching based on your preferences!</p>
+                    <button className="btn btn-primary"onClick={getUser}>Find Me A Match</button>
+                  </div>
+                </div>
+              </> :
         <div className="tinderCards__cardContainer">
+          <div className="matching-no">
+            <h1>discard</h1>
+          </div>
           <TinderCard
             className="swipe"
             key={user.username}
@@ -115,11 +126,42 @@ function TinderCards() {
             >
               {/* Displaying username and sport under each other */}
               <div className="Info">
-                <h3>{user.username}</h3>
-                <h3>Age: {user.age}</h3>
+                
+                <h3>
+                  <h3>{user.first_name}</h3>
+                  <h3>Age: {user.age}</h3>
+                  <h3>Gender: {user.sex}</h3>
+                  <h3>About me: {user.about}</h3>
+                  <h3 className="sports" >Sport Interests: {user.football ? <> <div>football</div>
+                  </> : <div></div>} 
+                  {user.basketball ? <> <div>basketball</div>
+                  </> : <div></div>} 
+                  {user.baseball ? <> <div>baseball</div>
+                  </> : <div></div>} 
+                  {user.cycling ? <> <div>cycling</div>
+                  </> : <div></div>} 
+                  {user.tableTennis ? <> <div>tableTennis</div>
+                  </> : <div></div>} 
+                  {user.running ? <> <div>running</div>
+                  </> : <div></div>} 
+                  {user.soccer ? <> <div>soccer</div>
+                  </> : <div></div>} 
+                  {user.volleyball ? <> <div>volleyball</div>
+                  </> : <div></div>} 
+                  </h3>
+
+
+                </h3>
+                
+                
+                {/* <h3>Gender: {user.sex}</h3> */}
+
               </div>
             </div>
           </TinderCard>
+          <div className="matching-yes">
+            <h1>match</h1>
+          </div>
         </div>
       }
     </div>
