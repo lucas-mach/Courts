@@ -17,9 +17,9 @@ function Chats(){
     const { selectedMatch, setSelectedMatch } = useMatch();
     const [textMessages, setTextMessages] = useState([]);
 
-    //change to contain data from database like editpref???
     const [message, setMessage] = useState("");
 
+    //send message function. Stored in database
     const sendMessage = async (event) => {
         event.preventDefault();
         try{
@@ -29,8 +29,7 @@ function Chats(){
         }
     };
 
-    
-
+    //Get matches from database when page loads.
     const useGetMatches = () => {
         const [matches, setMatches] = useState([]);
 
@@ -42,7 +41,6 @@ function Chats(){
                         params: { username : username }
                     });
                     setMatches(res.data);
-                    console.log("Lookie Here: ", res.data)
                 } catch (err) {
                     console.error(err);
                 }
@@ -52,6 +50,7 @@ function Chats(){
         return { matches };
     }
 
+    //class that displays when no chat is selected.
     const NoChatSelected = () => {
         return (
             <div className="message-box">
@@ -60,11 +59,12 @@ function Chats(){
         )
     }
 
+    //deselect match when page is reloaded or navigated away from
     useEffect(() => {
         return () => setSelectedMatch(null)
     }, [])
 
-    
+    //Get messages from the database based on the match selected. 
     useEffect(() => {
         const getMessages = async () => {
             try {
@@ -72,7 +72,6 @@ function Chats(){
                     params: { username : username, contact : selectedMatch.username }
                 });
                 setTextMessages(res.data);
-                console.log("Messages: ", res.data);
             } catch (err) {
                 console.error(err);
             }
@@ -80,11 +79,6 @@ function Chats(){
         }
         if(selectedMatch?._id) getMessages();
     },[selectedMatch, sendMessage])
-
-    // useEffect(() => { 
-
-
-    // },[textMessages])
 
     const { matches } = useGetMatches();
 

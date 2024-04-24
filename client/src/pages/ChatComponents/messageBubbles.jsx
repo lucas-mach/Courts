@@ -1,5 +1,6 @@
 import useMatch from "../../zustand/useMatch";
 
+//message bubble display. Changes for who sent the message. 
 const MessageBubble = ( {textMessage} ) => {
     const {selectedMatch, setSelectedMatch} = useMatch();
 

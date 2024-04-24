@@ -7,6 +7,7 @@ function EditPreferences() {
     const username = localStorage.getItem("userID");
     const navigate = useNavigate();
 
+    //set initial data to empty
     const [ThisUser, setThisUser] = useState({
         username: username,
         first_name: "",
@@ -29,6 +30,7 @@ function EditPreferences() {
     
     const [isEditing, setIsEditing] = useState(false);
 
+    //upon page loading, get user profile data if exists
     useEffect(() => {
         const getProfile = async () => {
             try {
@@ -45,35 +47,10 @@ function EditPreferences() {
         getProfile();
     },[])
 
-    // change to contain data from database
-    // const [formData, setFormData] = useState({
-    //     username: username,
-    //     first_name: "",
-    //     age: "",
-    //     sex:'Male',
-    //     url: 'https://www.kindpng.com/picc/m/451-4517876_default-profile-hd-png-download.png',
-    //     about: '',
-    //     college: "",
-    //     baseball: true,
-    //     basketball: false,
-    //     cycling: false,
-    //     football: false,
-    //     golf: false,
-    //     tableTennis: false,
-    //     tennis: false,
-    //     running: false,
-    //     soccer: false,
-    //     volleyball: false
-    // })
-
+    //handle changing user profile info
     const handleChange =(e) => {
         const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
         const name = e.target.name
-
-        // setFormData((prevState) => ({
-        //     ...prevState,
-        //     [name] : value
-        // }))
 
         setThisUser({
             ...ThisUser, 
@@ -81,6 +58,7 @@ function EditPreferences() {
         })
     }
 
+    //send info to the backend for updating
     const editPref = async (event) => {
         event.preventDefault();
         try {

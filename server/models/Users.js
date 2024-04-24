@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//database schema conataining all user data including preferences and array of matches.
 const UserSchema = new mongoose.Schema({
     username: {
         type: String,

@@ -5,13 +5,13 @@ import { useNavigate } from "react-router-dom";
 
 //Home Page
 function Home() {
-    // TODO: how do i access any of the data in the database bruh
-        // I want to access user data, then home button directs either to onboarding or swipe
+    //initialize variables
     const firstName = localStorage.getItem("firstname");
     
     const [cookies, setCookies] = useCookies(["access_token"]);
     const navigate = useNavigate();
 
+    //navigate to other pages
     const register = () => {
         navigate("/register");
     }
@@ -49,7 +49,6 @@ function Home() {
                         <button className = "btn btn-primary" onClick = {register}>Join Courts now!</button>
                     </div> :
                     <div>
-                        {/*TODO: I want to access data from database, for now this DOES NOT WORK */}
                         <div>
                             {!firstName ?
                             <div>

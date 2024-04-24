@@ -1,5 +1,6 @@
 import useMatch from "../../zustand/useMatch";
 
+//Match container for displaying user matches
 const Matches = ( {match} ) => {
     const {selectedMatch, setSelectedMatch} = useMatch();
 

@@ -7,6 +7,7 @@ const OnBoarding = () => {
     const username = localStorage.getItem("userID");
     const navigate = useNavigate();
 
+    //initial state of user data is empty
     const [formData, setFormData] = useState({
         username: username,
         first_name: "",
@@ -27,6 +28,7 @@ const OnBoarding = () => {
         volleyball: false
     })
 
+    //submit changed data when finished
     const handleSubmit = async (e) => {        
         e.preventDefault();
         try {
